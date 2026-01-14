@@ -1,0 +1,7 @@
+{
+  "name": "04travel.ru - Digital Ecosystem 2026",
+  "description": "A cutting-edge transformation platform for Altai tourism, featuring Organic Minimalism, AI-driven tour recommendations, and immersive Bento-grid layouts based on 2026 industry standards.",
+  "requestFramePermissions": [
+    "geolocation"
+  ]
+}
