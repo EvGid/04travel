@@ -10,7 +10,7 @@ const navigation = [
   { name: 'Туры', key: 'tury' },
   { name: 'Экскурсии', key: 'ekskursii' },
   { name: 'Локации', key: 'lokatsii' },
-  { name: 'Блог', key: 'blog' },
+  { name: 'Блог', key: 'blog', href: 'https://wp.04travel.ru' },
   { name: 'Домики', key: 'domiki' },
 ];
 
@@ -50,13 +50,23 @@ const Layout: React.FC<LayoutProps> = ({ children, view, setView }) => {
 
           <div className="hidden lg:flex gap-8 text-sm font-medium text-[#2C3531]/80">
             {navigation.map((item) => (
-              <button
-                key={item.name}
-                onClick={() => handleNavClick(item.key)}
-                className={`transition-colors ${view.page === item.key ? 'text-[#A68B67] font-bold' : 'hover:text-[#A68B67]'}`}
-              >
-                {item.name}
-              </button>
+              item.href ? (
+                <a
+                  key={item.name}
+                  href={item.href}
+                  className="transition-colors hover:text-[#A68B67]"
+                >
+                  {item.name}
+                </a>
+              ) : (
+                <button
+                  key={item.name}
+                  onClick={() => handleNavClick(item.key)}
+                  className={`transition-colors ${view.page === item.key ? 'text-[#A68B67] font-bold' : 'hover:text-[#A68B67]'}`}
+                >
+                  {item.name}
+                </button>
+              )
             ))}
           </div>
 
@@ -81,13 +91,23 @@ const Layout: React.FC<LayoutProps> = ({ children, view, setView }) => {
           <div className="fixed top-24 left-4 right-4 bg-white/80 backdrop-blur-xl p-6 rounded-3xl shadow-2xl" onClick={(e) => e.stopPropagation()}>
             <nav className="flex flex-col gap-6 text-center">
               {navigation.map((item) => (
-                <button
-                  key={item.name}
-                  onClick={() => handleNavClick(item.key)}
-                  className={`text-lg font-bold transition-colors ${view.page === item.key ? 'text-[#A68B67]' : 'text-[#2C3531] hover:text-[#A68B67]'}`}
-                >
-                  {item.name}
-                </button>
+                item.href ? (
+                  <a
+                    key={item.name}
+                    href={item.href}
+                    className="text-lg font-bold transition-colors text-[#2C3531] hover:text-[#A68B67]"
+                  >
+                    {item.name}
+                  </a>
+                ) : (
+                  <button
+                    key={item.name}
+                    onClick={() => handleNavClick(item.key)}
+                    className={`text-lg font-bold transition-colors ${view.page === item.key ? 'text-[#A68B67]' : 'text-[#2C3531] hover:text-[#A68B67]'}`}
+                  >
+                    {item.name}
+                  </button>
+                )
               ))}
               <div className="pt-6 border-t border-[#2C3531]/10 flex flex-col items-center gap-4">
                 <span className="text-[10px] font-bold uppercase tracking-widest text-[#A68B67]">Свяжитесь с нами</span>

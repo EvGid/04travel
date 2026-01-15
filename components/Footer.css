@@ -1,0 +1,103 @@
+/* Стили строго внутри .oasis-footer */
+.oasis-footer {
+    /* Базовый сброс для текстов и списков */
+}
+
+.oasis-footer p,
+.oasis-footer ul,
+.oasis-footer ol,
+.oasis-footer li {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.oasis-footer ul,
+.oasis-footer ol {
+    list-style: none !important;
+    padding-left: 0 !important;
+}
+
+/* Типография текста и ссылок */
+.oasis-footer p,
+.oasis-footer a,
+.oasis-footer li,
+.oasis-footer button {
+    font-size: 14px !important;
+    line-height: 20px !important;
+    color: rgba(255, 255, 255, 0.7) !important;
+}
+
+/* Заголовки колонок */
+.oasis-footer .footer-col-title {
+    font-size: 14px !important;
+    line-height: 20px !important;
+    letter-spacing: 1.4px !important;
+    text-transform: uppercase !important;
+    font-weight: 700 !important;
+    color: #A68B67 !important;
+    margin-bottom: 24px !important;
+    display: block;
+}
+
+/* Списки навигации */
+.oasis-footer .footer-nav-list {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 12px !important;
+}
+
+/* Адаптив для списков на мобильных */
+@media (max-width: 768px) {
+    .oasis-footer .footer-nav-list {
+        gap: 10px !important;
+    }
+}
+
+/* Карточки рейтинга и центровка */
+.oasis-footer .rating-card {
+    padding: 8px !important;
+    border-radius: 16px !important;
+    min-height: 74px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background-color: rgba(255, 255, 255, 0.05) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    text-decoration: none !important;
+    transition: background-color 0.2s !important;
+}
+
+.oasis-footer .rating-card:hover {
+    background-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Фиксация размеров iframe */
+.oasis-footer .rating-card iframe {
+    width: 150px !important;
+    height: 50px !important;
+    display: block !important;
+    border: 0 !important;
+    margin: 0 auto !important;
+}
+
+/* Сетка футера */
+.oasis-footer .footer-grid {
+    display: grid !important;
+    grid-template-columns: repeat(4, 1fr);
+    column-gap: 48px;
+    row-gap: 48px;
+    margin-bottom: 80px;
+}
+
+@media (max-width: 1024px) {
+    .oasis-footer .footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 640px) {
+    .oasis-footer .footer-grid {
+        grid-template-columns: 1fr;
+        row-gap: 32px;
+    }
+}
