@@ -113,6 +113,8 @@
     transition: all 0.3s ease !important;
     overflow: hidden !important;
     text-decoration: none !important;
+    filter: grayscale(1);
+    opacity: 0.9;
 }
 
 /* Brand Backgrounds on Containers */
@@ -125,7 +127,7 @@
 }
 
 .oasis-social__link--rutube {
-    background-color: #100943 !important;
+    background-color: #ED143B !important;
 }
 
 .oasis-social__link--telegram {
@@ -144,8 +146,6 @@
     width: 32px !important;
     height: 32px !important;
     display: block !important;
-    filter: grayscale(1);
-    opacity: 0.9;
     transition: all 0.3s ease !important;
     pointer-events: none;
 }
@@ -164,9 +164,6 @@
 /* Hover effects */
 .oasis-social__link:hover {
     transform: translateY(-2px);
-}
-
-.oasis-social__link:hover .oasis-social__icon {
     filter: grayscale(0);
     opacity: 1;
 }
