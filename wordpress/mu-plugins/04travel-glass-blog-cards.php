@@ -95,12 +95,18 @@ function travel_v8_assets() {
             flex-wrap: nowrap !important; 
             justify-content: center !important;
             align-items: center !important;
-            gap: 6px !important; 
+            gap: 12px !important; 
             padding: 8px 10px !important;
             width: 100% !important;
             box-sizing: border-box !important;
-            overflow: hidden !important;
-            background: transparent !important; /* REMOVE GROUP BG */
+            overflow-x: auto !important;
+            -webkit-overflow-scrolling: touch !important;
+            scrollbar-width: none !important;
+            background: transparent !important;
+        }
+
+        .oasis-nav-scroll::-webkit-scrollbar {
+            display: none !important;
         }
 
         @media (max-width: 1024px) {
@@ -143,6 +149,17 @@ function travel_v8_assets() {
             display: inline-block !important;
             text-transform: uppercase !important;
             letter-spacing: 1px !important;
+        }
+
+        @media (max-width: 480px) {
+            .oasis-nav-scroll {
+                justify-content: safe center !important;
+                gap: 8px !important;
+            }
+            .oasis-nav-scroll a {
+                font-size: 12px !important;
+                padding: 4px 8px !important;
+            }
         }
 
         .oasis-nav-scroll a:hover {
