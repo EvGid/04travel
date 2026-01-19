@@ -37,7 +37,7 @@ const ChatbudAssistant: React.FC<ChatbudAssistantProps> = ({ setView }) => {
   return (
     <div className="fixed bottom-10 right-6 z-[100]">
       {isOpen ? (
-        <div className="w-[350px] h-[500px] bg-white rounded-3xl shadow-2xl flex flex-col overflow-hidden border border-gray-100 transform transition-all duration-300">
+        <div className="w-[calc(100vw-48px)] sm:w-[350px] h-[500px] max-h-[80vh] bg-white rounded-3xl shadow-2xl flex flex-col overflow-hidden border border-gray-100 transform transition-all duration-300">
           {/* Header */}
           <div className="bg-[#4A5D4E] p-6 text-white flex justify-between items-center">
             <div>
