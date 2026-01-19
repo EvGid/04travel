@@ -95,8 +95,8 @@ function travel_v8_assets() {
             flex-wrap: nowrap !important; 
             justify-content: center !important;
             align-items: center !important;
-            gap: 12px !important; 
-            padding: 8px 10px !important;
+            gap: 8px !important; 
+            padding: 8px 16px !important;
             width: 100% !important;
             box-sizing: border-box !important;
             overflow-x: auto !important;
@@ -109,62 +109,81 @@ function travel_v8_assets() {
             display: none !important;
         }
 
-        @media (max-width: 1024px) {
-            .oasis-nav-scroll.wp-block-columns,
-            .oasis-nav-scroll.wp-block-columns:not(.is-not-stacked-on-mobile) {
-                flex-wrap: nowrap !important;
-                flex-direction: row !important;
-                display: flex !important;
-            }
-            .oasis-nav-scroll .wp-block-column {
-                flex-basis: auto !important; 
-                flex-grow: 0 !important;
-                width: auto !important;
-                min-width: 0 !important;
-                margin: 0 !important;
-                background: transparent !important; /* REMOVE COLUMN BG */
-            }
+        /* FORCE ALL COLUMNS TO SHRINK TO CONTENT - CRITICAL FOR MOBILE */
+        .oasis-nav-scroll.wp-block-columns,
+        .oasis-nav-scroll.wp-block-columns:not(.is-not-stacked-on-mobile) {
+            flex-wrap: nowrap !important;
+            flex-direction: row !important;
+            display: flex !important;
+            gap: 8px !important;
+        }
+        
+        .oasis-nav-scroll .wp-block-column {
+            flex-basis: auto !important; 
+            flex-grow: 0 !important;
+            flex-shrink: 0 !important;
+            width: auto !important;
+            min-width: 0 !important;
+            max-width: none !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            background: transparent !important;
+        }
+
+        /* RESET ALL GROUP PADDING - THIS IS THE FIX */
+        .oasis-nav-scroll .wp-block-group {
+            padding: 0 !important;
+            margin: 0 !important;
+            background: transparent !important;
+            border-radius: 0 !important;
         }
 
         .oasis-nav-scroll .wp-block-button__link,
         .oasis-nav-scroll .wp-block-button,
         .oasis-nav-scroll a,
         .oasis-nav-scroll .wp-block-column,
-        .oasis-nav-scroll .wp-block-group {
+        .oasis-nav-scroll .wp-block-group,
+        .oasis-nav-scroll p {
             background-color: transparent !important; 
             background: transparent !important;
             box-shadow: none !important;
             border: none !important;
             color: #000 !important;
+            margin: 0 !important;
+            padding: 0 !important;
         }
 
         .oasis-nav-scroll a {
             border-radius: 0 !important;
-            padding: 5px 12px !important;
-            font-size: 14px !important; 
+            padding: 6px 10px !important;
+            font-size: 13px !important; 
             font-weight: 700 !important;
             text-decoration: none !important;
             transition: all 0.2s ease !important;
             white-space: nowrap !important;
             display: inline-block !important;
             text-transform: uppercase !important;
-            letter-spacing: 1px !important;
+            letter-spacing: 0.5px !important;
         }
 
+        /* MOBILE: EVEN SMALLER BUTTONS */
         @media (max-width: 480px) {
             .oasis-nav-scroll {
-                justify-content: safe center !important;
-                gap: 8px !important;
+                justify-content: flex-start !important;
+                gap: 6px !important;
+                padding: 8px 12px !important;
             }
             .oasis-nav-scroll a {
-                font-size: 12px !important;
-                padding: 4px 8px !important;
+                font-size: 10px !important;
+                padding: 4px 6px !important;
+                letter-spacing: 0 !important;
             }
         }
 
         .oasis-nav-scroll a:hover {
             opacity: 0.6 !important;
         }
+
 
         /* BLOG CARDS */
         .oasis-blog-card {
