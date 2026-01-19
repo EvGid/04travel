@@ -330,7 +330,7 @@ body.oasis-menu-open {
 .oasis-header__socials {
     display: none;
     align-items: center;
-    gap: 4px;
+    gap: 8px;
 }
 
 @media (min-width: 640px) {
@@ -338,30 +338,6 @@ body.oasis-menu-open {
         display: flex;
     }
 }
-
-/* Плиточные иконки в хедере — уменьшенный размер 28x28 */
-.oasis-header__socials .oasis-social__link {
-    width: 28px;
-    height: 28px;
-    border-radius: 6px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    transition: transform 0.2s, filter 0.2s;
-    filter: grayscale(100%) opacity(0.7);
-}
-
-.oasis-header__socials .oasis-social__link:hover {
-    filter: grayscale(0%) opacity(1);
-    transform: translateY(-2px);
-}
-
-.oasis-header__socials .oasis-social__icon {
-    width: 28px;
-    height: 28px;
-}
-
 
 .oasis-header__social-link {
     display: flex;
@@ -414,6 +390,7 @@ body.oasis-menu-open {
 }
 
 .oasis-burger {
+    border-radius: 0 !important;
     display: block;
     background: none;
     border: none;
@@ -422,7 +399,7 @@ body.oasis-menu-open {
     color: var(--oasis-nav-text);
     width: 40px;
     height: 40px;
-    border-radius: 0;
+    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -439,12 +416,13 @@ body.oasis-menu-open {
 
 @media (min-width: 1024px) {
     .oasis-burger {
+    border-radius: 0 !important;
         display: none;
     }
 }
 
 .oasis-burger:hover {
-    background: transparent;
+    background: rgba(0, 0, 0, 0.05);
 }
 
 /* ============================================
@@ -571,6 +549,7 @@ body.oasis-menu-open {
 
 /* Плиточные иконки в мобильном меню - уменьшенный размер */
 .oasis-mobile-menu__socials .oasis-social__link {
+    filter: none !important;
     width: 40px;
     height: 40px;
     border-radius: 12px;
@@ -1162,4 +1141,40 @@ body {
     width: 36px !important;
     /* MAX has large white margins in its 1000x1000 viewBox */
     height: 36px !important;
+}
+/* === DEFINITIVE BURGER BOX REMOVAL === */
+.oasis-burger, 
+header button.oasis-burger,
+.oasis-header__actions button.oasis-burger {
+    background: transparent !important;
+    background-color: transparent !important;
+    border: none !important;
+    border-color: transparent !important;
+    box-shadow: none !important;
+    outline: none !important;
+    border-radius: 0 !important;
+    padding: 0 !important;
+    height: 40px !important;
+    width: 40px !important;
+    -webkit-appearance: none !important;
+    appearance: none !important;
+    overflow: visible !important;
+}
+
+.oasis-burger:hover, 
+.oasis-burger:focus, 
+.oasis-burger:active,
+.oasis-burger:focus-visible {
+    background: transparent !important;
+    background-color: transparent !important;
+    border: none !important;
+    border-color: transparent !important;
+    box-shadow: none !important;
+    outline: none !important;
+}
+
+.oasis-burger svg,
+.oasis-burger svg path {
+    border: none !important;
+    outline: none !important;
 }
