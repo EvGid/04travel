@@ -1028,7 +1028,7 @@ body {
     }
 }
 
-/* === OASIS SOCIAL ICONS - UNIFIED TILES === */
+/* === OASIS SOCIAL ICONS - UNIFIED TILES WITH BRAND COLORS === */
 .oasis-social__link {
     display: flex !important;
     align-items: center !important;
@@ -1036,17 +1036,39 @@ body {
     width: 40px !important;
     height: 40px !important;
     border-radius: 12px !important;
-    background-color: #0077FF !important;
-    /* Unified background like VK */
     transition: all 0.3s ease !important;
     overflow: hidden !important;
     text-decoration: none !important;
-    color: #FFFFFF !important;
+    /* Removed global background-color and color to allow brand-specific overrides and original SVG colors */
+}
+
+/* Brand Backgrounds on Containers */
+.oasis-social__link--vk {
+    background-color: #0077FF !important;
+}
+
+.oasis-social__link--ok {
+    background-color: #FF7700 !important;
+}
+
+.oasis-social__link--rutube {
+    background-color: #100943 !important;
+}
+
+.oasis-social__link--telegram {
+    background-color: #26A5E4 !important;
+}
+
+.oasis-social__link--dzen {
+    background-color: #202022 !important;
+}
+
+.oasis-social__link--max {
+    background: linear-gradient(135deg, #44ccff 0%, #5533ee 66.2%, #9933dd 100%) !important;
 }
 
 .oasis-social__icon {
     width: 32px !important;
-    /* Visual size of the glyph inside the tile */
     height: 32px !important;
     display: block !important;
     filter: grayscale(1);
@@ -1055,22 +1077,10 @@ body {
     pointer-events: none;
 }
 
-/* Specific background colors for each brand (optional, but user said "один и тот же фон ... как у VK") 
-   If the user literally wants them all blue, we keep the base color. 
-   But usually "as VK/OK/MAX" implies brand colors in a shared structure. 
-   However, the instruction says "чтобы RuTube/Dzen стали такими же". 
-   I will stick to the literal "background from VK" for all to start, or preserve brand colors if I see they want that.
-   Actually, VK/OK/MAX have different colors. 
-   The request says: ".oasis-social__link { background: <значение как у VK>; ... }"
-   This implies a SINGLE background for all to unify them.
-*/
-
-/* Hiding internal backgrounds of SVGs */
+/* Hiding internal backgrounds of SVGs to let container background show through */
 .oasis-social__icon--vk rect[fill="#0077FF"],
 .oasis-social__icon--ok rect[fill="#FF7700"],
 .oasis-social__icon--rutube rect[fill="#100943"],
-.oasis-social__icon--rutube path[fill="#ED143B"],
-/* Also hide the red corner in rutube if it's part of the background */
 .oasis-social__icon--telegram rect[fill="#26A5E4"],
 .oasis-social__icon--dzen path[fill="#202022"],
 .oasis-social__icon--max rect[fill^="url(#max_c)"],
