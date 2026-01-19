@@ -95,33 +95,26 @@ function travel_v8_assets() {
             flex-wrap: nowrap !important; 
             justify-content: center !important;
             align-items: center !important;
-            gap: 8px !important; 
-            padding: 8px 16px !important;
+            gap: 4px !important; 
+            padding: 8px 8px !important;
             width: 100% !important;
             box-sizing: border-box !important;
-            overflow-x: auto !important;
-            -webkit-overflow-scrolling: touch !important;
-            scrollbar-width: none !important;
+            overflow: visible !important;
             background: transparent !important;
         }
 
-        .oasis-nav-scroll::-webkit-scrollbar {
-            display: none !important;
-        }
-
-        /* FORCE ALL COLUMNS TO SHRINK TO CONTENT - CRITICAL FOR MOBILE */
+        /* FORCE ALL COLUMNS TO FIT IN ONE ROW */
         .oasis-nav-scroll.wp-block-columns,
         .oasis-nav-scroll.wp-block-columns:not(.is-not-stacked-on-mobile) {
             flex-wrap: nowrap !important;
             flex-direction: row !important;
             display: flex !important;
-            gap: 8px !important;
+            gap: 4px !important;
+            justify-content: center !important;
         }
         
         .oasis-nav-scroll .wp-block-column {
-            flex-basis: auto !important; 
-            flex-grow: 0 !important;
-            flex-shrink: 0 !important;
+            flex: 0 1 auto !important;
             width: auto !important;
             min-width: 0 !important;
             max-width: none !important;
@@ -130,12 +123,13 @@ function travel_v8_assets() {
             background: transparent !important;
         }
 
-        /* RESET ALL GROUP PADDING - THIS IS THE FIX */
+        /* RESET ALL GROUP PADDING */
         .oasis-nav-scroll .wp-block-group {
             padding: 0 !important;
             margin: 0 !important;
             background: transparent !important;
             border-radius: 0 !important;
+            display: inline-block !important;
         }
 
         .oasis-nav-scroll .wp-block-button__link,
@@ -155,34 +149,35 @@ function travel_v8_assets() {
 
         .oasis-nav-scroll a {
             border-radius: 0 !important;
-            padding: 6px 10px !important;
-            font-size: 13px !important; 
+            padding: 4px 6px !important;
+            font-size: 11px !important; 
             font-weight: 700 !important;
             text-decoration: none !important;
             transition: all 0.2s ease !important;
             white-space: nowrap !important;
             display: inline-block !important;
             text-transform: uppercase !important;
-            letter-spacing: 0.5px !important;
+            letter-spacing: 0 !important;
         }
 
-        /* MOBILE: EVEN SMALLER BUTTONS */
+        /* MOBILE: SMALLEST BUTTONS TO FIT ALL 3 */
         @media (max-width: 480px) {
             .oasis-nav-scroll {
-                justify-content: flex-start !important;
-                gap: 6px !important;
-                padding: 8px 12px !important;
+                justify-content: center !important;
+                gap: 2px !important;
+                padding: 8px 4px !important;
             }
             .oasis-nav-scroll a {
-                font-size: 10px !important;
-                padding: 4px 6px !important;
-                letter-spacing: 0 !important;
+                font-size: 9px !important;
+                padding: 3px 4px !important;
+                letter-spacing: -0.3px !important;
             }
         }
 
         .oasis-nav-scroll a:hover {
             opacity: 0.6 !important;
         }
+
 
 
         /* BLOG CARDS */
