@@ -74,9 +74,10 @@ const Layout: React.FC<LayoutProps> = ({ children, view, setView }) => {
             <div className="hidden sm:block">
               <SocialLinks light={false} />
             </div>
-            <button className="px-4 sm:px-6 py-2 bg-[#4A5D4E] text-white rounded-full text-sm font-semibold hover:bg-[#3d4d41] transition-all transform hover:scale-105 active:scale-95 shadow-md">
-              Записаться
-            </button>
+            <a href="tel:+79635106746" className="px-4 sm:px-6 py-2 bg-[#4A5D4E] text-white rounded-full text-sm font-semibold hover:bg-[#3d4d41] transition-all transform hover:scale-105 active:scale-95 shadow-md">
+              Позвонить
+            </a>
+
             <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="lg:hidden p-2 rounded-full hover:bg-black/5 transition-colors z-20">
               <svg className="w-6 h-6 text-[#2C3531]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={isMenuOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16m-7 6h7"} />
