@@ -794,26 +794,30 @@ body {
     margin: 0;
 }
 
+/* Footer Social Links - Gosuslugi Style (Iteration 10) */
 .oasis-footer .footer-social-link {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
+    width: 40px !important;
+    height: 40px !important;
+    border-radius: 12px !important;
     color: #fff;
     text-decoration: none;
-    transition: all 0.5s;
+    transition: all 0.3s ease;
+    filter: grayscale(100%);
+    opacity: 0.8;
 }
 
 .oasis-footer .footer-social-link:hover {
-    background: rgba(255, 255, 255, 0.1);
-    box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1);
+    filter: grayscale(0%);
+    opacity: 1;
+    transform: translateY(-2px);
 }
 
 .oasis-footer .footer-social-link svg {
-    width: 24px;
-    height: 24px;
+    width: 100%;
+    height: 100%;
 }
 
 /* Копирайт */
@@ -851,29 +855,34 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 2.5rem;
-    /* w-10 */
-    height: 2.5rem;
-    /* h-10 */
-    border-radius: 9999px;
-    /* rounded-full */
+    width: 40px !important;
+    height: 40px !important;
+    border-radius: 12px !important;
     color: #fff;
     text-decoration: none;
-    transition: all 0.5s;
+    transition: all 0.3s ease;
+    filter: grayscale(100%);
+    opacity: 0.8;
 }
 
-/* hover:bg-white/10 hover:shadow-[...] */
 .footer-social-link:hover {
-    background: rgba(255, 255, 255, 0.1);
-    box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1);
+    filter: grayscale(0%);
+    opacity: 1;
+    transform: translateY(-2px);
 }
 
-/* SVG: w-6 h-6 */
 .footer-social-link svg {
-    width: 1.5rem;
-    /* w-6 */
-    height: 1.5rem;
-    /* h-6 */
+    width: 100%;
+    height: 100%;
+}
+
+.footer-social-link img.footer-social-icon-img {
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    border-radius: 12px;
 }
 
 /* Заголовки колонок: text-sm font-bold uppercase tracking-widest text-[#A68B67] mb-6 */
@@ -1017,4 +1026,29 @@ body {
         grid-template-columns: 1fr;
         gap: 2.5rem;
     }
+}
+
+/* === OASIS SOCIAL ICONS === */
+.oasis-social__link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px !important;
+    height: 40px !important;
+}
+
+.oasis-social__icon {
+    width: 40px !important;
+    height: 40px !important;
+    display: block;
+    border-radius: 12px;
+    filter: grayscale(1);
+    opacity: 0.9;
+    transition: all 0.3s ease;
+}
+
+.oasis-social__link:hover .oasis-social__icon {
+    filter: grayscale(0);
+    opacity: 1;
+    transform: translateY(-2px);
 }
