@@ -403,7 +403,10 @@ body.oasis-menu-open {
     align-items: center;
     justify-content: center;
     transition: background-color 0.2s;
+    position: relative;
+    z-index: 1001;
 }
+
 
 .oasis-burger svg {
     width: 24px;
