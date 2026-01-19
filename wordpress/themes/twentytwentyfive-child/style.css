@@ -330,7 +330,7 @@ body.oasis-menu-open {
 .oasis-header__socials {
     display: none;
     align-items: center;
-    gap: 8px;
+    gap: 4px;
 }
 
 @media (min-width: 640px) {
@@ -338,6 +338,30 @@ body.oasis-menu-open {
         display: flex;
     }
 }
+
+/* Плиточные иконки в хедере — уменьшенный размер 28x28 */
+.oasis-header__socials .oasis-social__link {
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    transition: transform 0.2s, filter 0.2s;
+    filter: grayscale(100%) opacity(0.7);
+}
+
+.oasis-header__socials .oasis-social__link:hover {
+    filter: grayscale(0%) opacity(1);
+    transform: translateY(-2px);
+}
+
+.oasis-header__socials .oasis-social__icon {
+    width: 28px;
+    height: 28px;
+}
+
 
 .oasis-header__social-link {
     display: flex;
@@ -398,7 +422,7 @@ body.oasis-menu-open {
     color: var(--oasis-nav-text);
     width: 40px;
     height: 40px;
-    border-radius: 50%;
+    border-radius: 0;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -420,7 +444,7 @@ body.oasis-menu-open {
 }
 
 .oasis-burger:hover {
-    background: rgba(0, 0, 0, 0.05);
+    background: transparent;
 }
 
 /* ============================================
