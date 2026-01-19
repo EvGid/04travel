@@ -1110,3 +1110,51 @@ body {
     /* MAX has large white margins in its 1000x1000 viewBox */
     height: 36px !important;
 }
+
+/* === NAVIGATION BUTTONS FIX (Seasons, Routes, Useful) === */
+.oasis-nav-scroll {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    justify-content: center !important;
+    gap: 8px !important;
+    padding: 4px 0 !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    scrollbar-width: none !important;
+    /* Hide scrollbar for cleaner look */
+}
+
+.oasis-nav-scroll::-webkit-scrollbar {
+    display: none !important;
+}
+
+.oasis-nav-scroll .wp-block-button__link {
+    font-size: 13px !important;
+    padding: 6px 12px !important;
+    background-color: transparent !important;
+    border: 1px solid rgba(44, 53, 49, 0.2) !important;
+    color: #2C3531 !important;
+    white-space: nowrap !important;
+    transition: all 0.2s ease !important;
+}
+
+.oasis-nav-scroll .wp-block-button__link:hover {
+    background-color: rgba(44, 53, 49, 0.05) !important;
+    border-color: #2C3531 !important;
+}
+
+@media (max-width: 480px) {
+    .oasis-nav-scroll {
+        gap: 6px !important;
+        justify-content: flex-start !important;
+        /* Allow natural scrolling if still too wide */
+        padding-left: 16px !important;
+        padding-right: 16px !important;
+    }
+
+    .oasis-nav-scroll .wp-block-button__link {
+        font-size: 11px !important;
+        padding: 4px 10px !important;
+    }
+}
