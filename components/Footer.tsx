@@ -33,7 +33,7 @@ const Footer: React.FC<FooterProps> = ({ setView }) => {
             </p>
             <div className="mb-8">
               <h4 className="footer-col-title text-[10px] font-bold uppercase tracking-[0.2em] text-[#A68B67] mb-5">Подписывайтесь на наши каналы</h4>
-              <SocialLinks light />
+              <SocialLinks />
             </div>
           </div>
 

@@ -101,3 +101,83 @@
         row-gap: 32px;
     }
 }
+
+/* === OASIS SOCIAL ICONS - UNIFIED TILES WITH BRAND COLORS === */
+.oasis-social__link {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 40px !important;
+    height: 40px !important;
+    border-radius: 12px !important;
+    transition: all 0.3s ease !important;
+    overflow: hidden !important;
+    text-decoration: none !important;
+}
+
+/* Brand Backgrounds on Containers */
+.oasis-social__link--vk {
+    background-color: #0077FF !important;
+}
+
+.oasis-social__link--ok {
+    background-color: #FF7700 !important;
+}
+
+.oasis-social__link--rutube {
+    background-color: #100943 !important;
+}
+
+.oasis-social__link--telegram {
+    background-color: #26A5E4 !important;
+}
+
+.oasis-social__link--dzen {
+    background-color: #202022 !important;
+}
+
+.oasis-social__link--max {
+    background: linear-gradient(135deg, #44ccff 0%, #5533ee 66.2%, #9933dd 100%) !important;
+}
+
+.oasis-social__icon {
+    width: 32px !important;
+    height: 32px !important;
+    display: block !important;
+    filter: grayscale(1);
+    opacity: 0.9;
+    transition: all 0.3s ease !important;
+    pointer-events: none;
+}
+
+/* Hiding internal backgrounds of SVGs to let container background show through */
+.oasis-social__icon--vk rect[fill="#0077FF"],
+.oasis-social__icon--ok rect[fill="#FF7700"],
+.oasis-social__icon--rutube rect[fill="#100943"],
+.oasis-social__icon--telegram rect[fill="#26A5E4"],
+.oasis-social__icon--dzen path[fill="#202022"],
+.oasis-social__icon--max rect[fill^="url(#max_c)"],
+.oasis-social__icon--max rect[fill^="url(#max_d)"] {
+    display: none !important;
+}
+
+/* Hover effects */
+.oasis-social__link:hover {
+    transform: translateY(-2px);
+}
+
+.oasis-social__link:hover .oasis-social__icon {
+    filter: grayscale(0);
+    opacity: 1;
+}
+
+/* Specific sizing tweaks for better visual balance */
+.oasis-social__icon--dzen {
+    width: 60px !important;
+    height: 60px !important;
+}
+
+.oasis-social__icon--max {
+    width: 36px !important;
+    height: 36px !important;
+}
