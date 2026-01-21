@@ -20,7 +20,7 @@ add_shortcode('oasis_contact_section', function($atts) {
     
     ob_start();
     ?>
-    <div class="oasis-cta" style="margin-top: 40px; text-align: center;">
+    <div class="oasis-cta oasis-booking" style="margin-top: 40px; text-align: center;">
         <h3 class="wp-block-heading has-text-align-center">Связаться и забронировать</h3>
         
         <div class="wp-block-buttons" style="display: flex; justify-content: center; flex-wrap: wrap; gap: 12px; margin-top: 20px;">

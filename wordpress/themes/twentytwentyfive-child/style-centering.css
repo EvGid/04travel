@@ -1,0 +1,29 @@
+/* === Comments and More posts centering fix === */
+.single-post .wp-block-comments,
+.single-post .comments-area,
+.single-post .comment-respond,
+.single-post .oasis-more-posts {
+    max-width: 650px !important;
+    /* Standardize width */
+    margin-left: auto !important;
+    margin-right: auto !important;
+    width: 100% !important;
+    float: none !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    box-sizing: border-box !important;
+    position: static !important;
+    /* Reset to static */
+}
+
+/* Specific fix for comments area mobile padding */
+@media (max-width: 768px) {
+
+    .single-post .wp-block-comments,
+    .single-post .comments-area,
+    .single-post .comment-respond,
+    .single-post .oasis-more-posts {
+        padding-left: 15px !important;
+        padding-right: 15px !important;
+    }
+}
