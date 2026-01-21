@@ -15,6 +15,26 @@ Text Domain: twentytwentyfive-child
     display: none !important;
 }
 
+/* Скрытие всех разделителей на сайте */
+.wp-block-separator,
+hr.wp-block-separator,
+.is-style-wide,
+.is-style-dots {
+    display: none !important;
+}
+
+/* Убираем border-линии разделители */
+.single-post nav[aria-label],
+.single-post .wp-block-group[style*="border-top"],
+.single-post .wp-block-group[style*="border-bottom"],
+.single-post [style*="border-top: 1px"],
+.single-post [style*="border-bottom: 1px"] {
+    border-top: none !important;
+    border-bottom: none !important;
+}
+
+
+
 body {
     background-color: #F5F1E9;
     font-family: 'Manrope', 'Inter', sans-serif;
@@ -1252,6 +1272,33 @@ header button.oasis-burger,
     background: rgba(255, 255, 255, .55);
 }
 
+/* --- Blog cards: title only (mobile) --- */
+@media (max-width: 768px) {
+
+    /* прячем excerpt и любые "content" блоки внутри карточки в листингах на мобильных */
+    .blog .wp-block-post-template .wp-block-post-excerpt,
+    .archive .wp-block-post-template .wp-block-post-excerpt,
+    .category .wp-block-post-template .wp-block-post-excerpt,
+    .home .wp-block-post-template .wp-block-post-excerpt,
+    .wp-block-query .wp-block-post-template .wp-block-post-excerpt,
+    .blog .wp-block-post-template .wp-block-post-content,
+    .archive .wp-block-post-template .wp-block-post-content,
+    .category .wp-block-post-template .wp-block-post-content,
+    .home .wp-block-post-template .wp-block-post-content,
+    .wp-block-query .wp-block-post-template .wp-block-post-content {
+        display: none !important;
+    }
+
+    /* скрываем параграфы под заголовком на мобильных */
+    .blog .wp-block-post-template li p,
+    .archive .wp-block-post-template li p,
+    .category .wp-block-post-template li p,
+    .home .wp-block-post-template li p,
+    .wp-block-query .wp-block-post-template li p {
+        display: none !important;
+    }
+}
+
 /* --- Blog cards: title only (desktop only) --- */
 @media (min-width: 1025px) {
 
@@ -1271,6 +1318,7 @@ header button.oasis-burger,
     .category .wp-block-post-template li p {
         display: none !important;
     }
+
 
     /* оставляем дату видимой (если нужна) */
     .blog .wp-block-post-template .wp-block-post-date,
@@ -1423,16 +1471,54 @@ header button.oasis-burger,
     display: none !important;
 }
 
+/* === Уменьшение отступов между блоками === */
+/* Убираем лишние отступы у навигации по записям */
+.single-post nav[aria-label="Навигация по записям"],
+.single-post .wp-block-group[aria-label] {
+    padding-top: 15px !important;
+    padding-bottom: 15px !important;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+}
 
+/* Убираем отступы у блока комментариев */
+.single-post .wp-block-comments {
+    margin-top: 15px !important;
+    padding-top: 0 !important;
+}
+
+/* Убираем spacing на родительских группах */
+.single-post .wp-block-group:has(> .wp-block-comments) {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+    margin-bottom: 0 !important;
+    padding-bottom: 0 !important;
+}
+
+/* Убираем лишние отступы у блока комментариев */
+.single-post .wp-block-comments {
+    margin-bottom: 20px !important;
+    padding-bottom: 0 !important;
+}
 
 /* === More posts compact (single only) === */
 .single-post .oasis-more-posts {
-    margin-top: 12px !important;
+    margin-top: 20px !important;
+    margin-bottom: 20px !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
 }
 
 .single-post .oasis-more-posts .wp-block-heading {
     margin: 12px 0 8px !important;
 }
+
+/* Уменьшаем отступ перед футером */
+.single-post main.wp-block-group {
+    margin-bottom: 0 !important;
+    padding-bottom: 20px !important;
+}
+
 
 /* Глобальная очистка блока (ПК и мобильные) */
 .single-post .oasis-more-posts .wp-block-post .wp-block-group {
