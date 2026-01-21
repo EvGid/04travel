@@ -416,7 +416,7 @@ body.oasis-menu-open {
 
 @media (min-width: 1024px) {
     .oasis-burger {
-    border-radius: 0 !important;
+        border-radius: 0 !important;
         display: none;
     }
 }
@@ -1142,8 +1142,9 @@ body {
     /* MAX has large white margins in its 1000x1000 viewBox */
     height: 36px !important;
 }
+
 /* === DEFINITIVE BURGER BOX REMOVAL === */
-.oasis-burger, 
+.oasis-burger,
 header button.oasis-burger,
 .oasis-header__actions button.oasis-burger {
     background: transparent !important;
@@ -1161,8 +1162,8 @@ header button.oasis-burger,
     overflow: visible !important;
 }
 
-.oasis-burger:hover, 
-.oasis-burger:focus, 
+.oasis-burger:hover,
+.oasis-burger:focus,
 .oasis-burger:active,
 .oasis-burger:focus-visible {
     background: transparent !important;
@@ -1177,4 +1178,132 @@ header button.oasis-burger,
 .oasis-burger svg path {
     border: none !important;
     outline: none !important;
+}
+
+/* --- Исправление сетки блога на ПК --- */
+@media (min-width: 1025px) {
+
+    /* контейнер блога - строго по центру */
+    body.blog .wp-site-blocks main {
+        max-width: 1280px;
+        /* Подогнано под "красные линии" шапки/футера */
+        margin-left: auto !important;
+        margin-right: auto !important;
+        padding-left: 12px;
+        padding-right: 12px;
+        box-sizing: border-box;
+    }
+
+    /* список постов - grid */
+    body.blog .wp-block-post-template {
+        display: grid !important;
+        grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+        gap: 8px !important;
+        /* логический gap */
+    }
+
+    /* физический зазор: padding на li */
+    body.blog .wp-block-post-template>li {
+        padding: 4px !important;
+        /* 4px слева+справа = 8px между карточками */
+        margin: 0 !important;
+        box-sizing: border-box;
+        overflow: visible !important;
+        background: transparent !important;
+    }
+
+    /* внутренняя карточка должна занимать всю ширину li */
+    body.blog .wp-block-post-template>li>* {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 !important;
+        box-sizing: border-box;
+    }
+
+    /* геометрия карточки + чтобы оверлеи не вылезали и не перекрывали gap */
+    body.blog .wp-block-post-template>li .wp-block-group,
+    body.blog .wp-block-post-template>li .wp-block-cover {
+        border-radius: 18px;
+        overflow: hidden;
+    }
+}
+/* --- Compact Open Source Button --- */
+.oasis-open-source-wrap { margin-top: 18px; }
+.oasis-open-source-btn{
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  font-size: 14px;
+  line-height: 1;
+  border-radius: 999px;
+  border: 1px solid rgba(0,0,0,.25);
+  background: rgba(255,255,255,.35);
+  backdrop-filter: blur(8px);
+  text-decoration: none;
+  color: inherit !important;
+}
+.oasis-open-source-btn:hover{ background: rgba(255,255,255,.55); }
+
+/* --- Blog cards: title only (desktop only) --- */
+@media (min-width: 1025px) {
+  /* прячем excerpt и любые "content" блоки внутри карточки в листингах */
+  .blog .wp-block-post-template .wp-block-post-excerpt,
+  .archive .wp-block-post-template .wp-block-post-excerpt,
+  .category .wp-block-post-template .wp-block-post-excerpt,
+  .blog .wp-block-post-template .wp-block-post-content,
+  .archive .wp-block-post-template .wp-block-post-content,
+  .category .wp-block-post-template .wp-block-post-content {
+    display: none !important;
+  }
+
+  /* если где-то выводится "параграф" под заголовком - скрыть его */
+  .blog .wp-block-post-template li p,
+  .archive .wp-block-post-template li p,
+  .category .wp-block-post-template li p {
+    display: none !important;
+  }
+
+  /* оставляем дату видимой (если нужна) */
+  .blog .wp-block-post-template .wp-block-post-date,
+  .archive .wp-block-post-template .wp-block-post-date,
+  .category .wp-block-post-template .wp-block-post-date {
+    display: block !important;
+  }
+}
+
+/* --- Single Post: Buttons Centering --- */
+@media (min-width: 1025px) {
+  .oasis-cta{
+    max-width: var(--wp--style--global--content-size);
+    margin: 40px auto;
+    text-align: center;
+  }
+  .oasis-cta .wp-block-buttons{
+    justify-content: center !important;
+    flex-wrap: wrap !important;
+    gap: 12px !important;
+  }
+  .oasis-cta .wp-block-button__link{
+    white-space: nowrap;
+  }
+  /* маленькая кнопка "Открыть страницу" - если она внутри oasis-cta */
+  .oasis-cta .oasis-open-page .wp-block-button__link,
+  .oasis-open-source-wrap .oasis-open-source-btn {
+    display: inline-flex;
+    margin: 10px auto;
+  }
+  
+  /* Принудительное центрирование для блока кнопок в контенте, если они там остались */
+  .blog .wp-block-post-content .wp-block-buttons,
+  .single .wp-block-post-content .wp-block-buttons {
+    justify-content: center !important;
+  }
+}
+
+/* Центрирование обертки "Открыть страницу" */
+.oasis-open-source-wrap {
+    text-align: center;
+    width: 100%;
+    display: block;
 }
