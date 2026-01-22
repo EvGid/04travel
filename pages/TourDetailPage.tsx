@@ -5,6 +5,7 @@ import type { IPageData } from '../types';
 import type { ViewState } from '../App';
 import PageNavigator from '../components/PageNavigator';
 import BookingActions from '../components/BookingActions';
+import TourComments from '../components/TourComments';
 
 interface TourDetailPageProps {
   tourId: string;
@@ -182,6 +183,7 @@ const TourDetailPage: React.FC<TourDetailPageProps> = ({ tourId, setView }) => {
         dangerouslySetInnerHTML={{ __html: rawHtml }}
       />
       <BookingActions />
+      {page?.wp_id && <TourComments tourWpId={page.wp_id} />}
     </div>
   );
 };

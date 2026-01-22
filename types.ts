@@ -85,3 +85,13 @@ export interface IPageData {
   modified: string;
   contentHtml: string;
 }
+
+// Интерфейс для комментария из WordPress REST API
+export interface IComment {
+  id: number;
+  author_name: string;
+  author_avatar_url: string;
+  date: string;
+  content: string;
+  parent: number;
+}

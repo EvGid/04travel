@@ -1541,11 +1541,13 @@ header button.oasis-burger,
 .single-post .oasis-more-posts .wp-block-post-title {
     margin: 0 !important;
     text-align: left !important;
+    font-size: 12pt !important;
 }
 
 .single-post .oasis-more-posts .wp-block-post-date {
     margin-top: 0 !important;
     opacity: 0.6;
+    font-size: 12pt !important;
 }
 
 /* mobile: 2 columns, compact text */
@@ -1598,7 +1600,7 @@ header button.oasis-burger,
     }
 
     .single-post .oasis-more-posts .wp-block-post-title {
-        font-size: 15px !important;
+        font-size: 12pt !important;
         line-height: 1.2 !important;
         margin: 0 !important;
         flex: 1 1 auto !important;
@@ -1614,7 +1616,7 @@ header button.oasis-burger,
     }
 
     .single-post .oasis-more-posts .wp-block-post-date {
-        font-size: 12px !important;
+        font-size: 12pt !important;
         line-height: 1 !important;
         opacity: 0.6;
         margin-left: 12px !important;
