@@ -5,6 +5,8 @@ import type { IPageData } from '../types';
 import type { ViewState } from '../App';
 import PageNavigator from '../components/PageNavigator';
 import BookingActions from '../components/BookingActions';
+import SocialReactions from '../components/SocialReactions';
+import '../components/SocialReactions.css';
 
 interface PostDetailPageProps {
   postId: string;
@@ -160,6 +162,13 @@ const PostDetailPage: React.FC<PostDetailPageProps> = ({ postId, setView }) => {
         ref={contentRef}
         className="content-container wp-content prose max-w-none text-[#2C3531]"
         dangerouslySetInnerHTML={{ __html: rawHtml }}
+      />
+      <SocialReactions
+        postId={String(page?.wp_id || postId)}
+        postUrl={`https://04travel.ru/blog/${postId}`}
+        postTitle={page?.title || 'Статья'}
+        commentsCount={0}
+        supportUrl="#support"
       />
       <BookingActions />
     </div>

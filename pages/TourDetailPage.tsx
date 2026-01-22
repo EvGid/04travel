@@ -6,6 +6,8 @@ import type { ViewState } from '../App';
 import PageNavigator from '../components/PageNavigator';
 import BookingActions from '../components/BookingActions';
 import TourComments from '../components/TourComments';
+import SocialReactions from '../components/SocialReactions';
+import '../components/SocialReactions.css';
 
 interface TourDetailPageProps {
   tourId: string;
@@ -181,6 +183,13 @@ const TourDetailPage: React.FC<TourDetailPageProps> = ({ tourId, setView }) => {
         ref={contentRef}
         className="content-container wp-content prose max-w-none text-[#2C3531]"
         dangerouslySetInnerHTML={{ __html: rawHtml }}
+      />
+      <SocialReactions
+        postId={String(page?.wp_id || tourId)}
+        postUrl={`https://04travel.ru/tury/${tourId}`}
+        postTitle={page?.title || 'Тур на Алтай'}
+        commentsCount={0}
+        supportUrl="#support"
       />
       <BookingActions />
       {page?.wp_id && <TourComments tourWpId={page.wp_id} />}
