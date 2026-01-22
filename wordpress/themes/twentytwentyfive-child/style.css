@@ -1272,374 +1272,346 @@ header button.oasis-burger,
     background: rgba(255, 255, 255, .55);
 }
 
-/* --- Blog cards: title only (mobile) --- */
-@media (max-width: 768px) {
-
-    /* прячем excerpt и любые "content" блоки внутри карточки в листингах на мобильных */
-    .blog .wp-block-post-template .wp-block-post-excerpt,
-    .archive .wp-block-post-template .wp-block-post-excerpt,
-    .category .wp-block-post-template .wp-block-post-excerpt,
-    .home .wp-block-post-template .wp-block-post-excerpt,
-    .wp-block-query .wp-block-post-template .wp-block-post-excerpt,
-    .blog .wp-block-post-template .wp-block-post-content,
-    .archive .wp-block-post-template .wp-block-post-content,
-    .category .wp-block-post-template .wp-block-post-content,
-    .home .wp-block-post-template .wp-block-post-content,
-    .wp-block-query .wp-block-post-template .wp-block-post-content {
-        display: none !important;
-    }
-
-    /* скрываем параграфы под заголовком на мобильных */
-    .blog .wp-block-post-template li p,
-    .archive .wp-block-post-template li p,
-    .category .wp-block-post-template li p,
-    .home .wp-block-post-template li p,
-    .wp-block-query .wp-block-post-template li p {
-        display: none !important;
-    }
-}
-
-/* --- Blog cards: title only (desktop only) --- */
-@media (min-width: 1025px) {
-
-    /* прячем excerpt и любые "content" блоки внутри карточки в листингах */
-    .blog .wp-block-post-template .wp-block-post-excerpt,
-    .archive .wp-block-post-template .wp-block-post-excerpt,
-    .category .wp-block-post-template .wp-block-post-excerpt,
-    .blog .wp-block-post-template .wp-block-post-content,
-    .archive .wp-block-post-template .wp-block-post-content,
-    .category .wp-block-post-template .wp-block-post-content {
-        display: none !important;
-    }
-
-    /* если где-то выводится "параграф" под заголовком - скрыть его */
-    .blog .wp-block-post-template li p,
-    .archive .wp-block-post-template li p,
-    .category .wp-block-post-template li p {
-        display: none !important;
-    }
-
-
-    /* оставляем дату видимой (если нужна) */
-    .blog .wp-block-post-template .wp-block-post-date,
-    .archive .wp-block-post-template .wp-block-post-date,
-    .category .wp-block-post-template .wp-block-post-date {
-        display: block !important;
-    }
-}
-
-/* --- Single Post: Buttons Centering --- */
-@media (min-width: 1025px) {
-    .oasis-cta {
-        max-width: var(--wp--style--global--content-size);
-        margin: 40px auto;
-        text-align: center;
-    }
-
-    .oasis-cta .wp-block-buttons {
-        justify-content: center !important;
-        flex-wrap: wrap !important;
-        gap: 12px !important;
-    }
-
-    .oasis-cta .wp-block-button__link {
-        white-space: nowrap;
-    }
-
-    /* маленькая кнопка "Открыть страницу" - если она внутри oasis-cta */
-    .oasis-cta .oasis-open-page .wp-block-button__link,
-    .oasis-open-source-wrap .oasis-open-source-btn {
-        display: inline-flex;
-        margin: 10px auto;
-    }
-
-    /* Принудительное центрирование для блока кнопок в контенте, если они там остались */
-    .blog .wp-block-post-content .wp-block-buttons,
-    .single .wp-block-post-content .wp-block-buttons {
-        justify-content: center !important;
-    }
-}
-
-/* Центрирование обертки "Открыть страницу" */
-.oasis-open-source-wrap {
-    text-align: center;
-    width: 100%;
-    display: block;
-}
-
-/* === Single post: booking block compact + centered === */
-.single-post .oasis-booking,
-.single-post .oasis-cta {
-    max-width: 760px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.single-post .oasis-booking .wp-block-buttons,
-.single-post .oasis-cta .wp-block-buttons {
-    display: flex !important;
-    flex-direction: row !important;
-    flex-wrap: wrap !important;
-    justify-content: center !important;
-    gap: 10px !important;
-    margin-top: 12px !important;
-    margin-bottom: 8px !important;
-}
-
-.single-post .oasis-booking .wp-block-button,
-.single-post .oasis-cta .wp-block-button {
-    margin: 0 !important;
-}
-
-.single-post .oasis-booking .wp-block-button__link,
-.single-post .oasis-cta .wp-block-button__link {
-    white-space: nowrap !important;
-}
-
-/* Убрать огромную пустоту после блока бронирования */
-.single-post .oasis-booking,
-.single-post .oasis-cta {
-    padding-bottom: 0 !important;
-    margin-bottom: 10px !important;
-}
-
-/* Если после бронирования сразу идет разделитель/линия - подтянуть ближе */
-.single-post .oasis-booking+hr,
-.single-post .oasis-booking+.wp-block-separator,
-.single-post .oasis-cta+hr,
-.single-post .oasis-cta+.wp-block-separator {
-    margin-top: 10px !important;
-    margin-bottom: 14px !important;
-}
-
-/* Скрываем заголовок непосредственно перед блоком */
-.single-post h2:has(+ .oasis-booking),
-.single-post h3:has(+ .oasis-booking),
-.single-post h2:has(+ .oasis-cta),
-.single-post h3:has(+ .oasis-cta) {
-    display: none !important;
-    margin: 0 !important;
-}
-
-/* === Single: nav compact on mobile (works for classic + block) === */
-@media (max-width: 768px) {
-
-    /* classic navigation */
-    .single-post nav.navigation.post-navigation .nav-links {
-        display: flex !important;
-        justify-content: space-between !important;
-        gap: 12px !important;
-        align-items: center !important;
-    }
-
-    .single-post nav.navigation.post-navigation .nav-previous,
-    .single-post nav.navigation.post-navigation .nav-next {
-        flex: 1 1 0;
-        margin: 0 !important;
-    }
-
-    .single-post nav.navigation.post-navigation a {
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        white-space: nowrap;
-    }
-
-    /* block navigation */
-    .single-post .wp-block-post-navigation-link {
-        display: inline-flex !important;
-        white-space: nowrap;
-    }
-
-    .single-post .wp-block-post-navigation-link+.wp-block-post-navigation-link {
-        margin-left: 12px !important;
-    }
-
-    .single-post .wp-block-post-navigation-link__content {
-        white-space: nowrap;
-    }
-}
-
-
-
-
-/* === Hide "Комментарии" title === */
-.single-post .wp-block-comments>h2.wp-block-heading,
-.single-post .wp-block-comments>.wp-block-comments-title,
-.single-post .comments-title,
-.single-post #comments-title {
+/* --- Blog cards: title only (All Devices) --- */
+/* прячем excerpt и любые "content" блоки внутри карточки в листингах на всех устройствах */
+.blog .wp-block-post-template .wp-block-post-excerpt,
+.archive .wp-block-post-template .wp-block-post-excerpt,
+.category .wp-block-post-template .wp-block-post-excerpt,
+.home .wp-block-post-template .wp-block-post-excerpt,
+.wp-block-query .wp-block-post-template .wp-block-post-excerpt,
+.blog .wp-block-post-template .wp-block-post-content,
+.archive .wp-block-post-template .wp-block-post-content,
+.category .wp-block-post-template .wp-block-post-content,
+.home .wp-block-post-template .wp-block-post-content,
+.wp-block-query .wp-block-post-template .wp-block-post-content {
     display: none !important;
 }
 
-/* === Уменьшение отступов между блоками === */
-/* Убираем лишние отступы у навигации по записям */
-.single-post nav[aria-label="Навигация по записям"],
-.single-post .wp-block-group[aria-label] {
-    padding-top: 15px !important;
-    padding-bottom: 15px !important;
-    margin-top: 0 !important;
-    margin-bottom: 0 !important;
+/* скрываем параграфы под заголовком */
+.blog .wp-block-post-template li p,
+.archive .wp-block-post-template li p,
+.category .wp-block-post-template li p,
+.home .wp-block-post-template li p,
+.wp-block-query .wp-block-post-template li p {
+    display: none !important;
 }
 
-/* Убираем отступы у блока комментариев */
-.single-post .wp-block-comments {
-    margin-top: 15px !important;
-    padding-top: 0 !important;
-}
-
-/* Убираем spacing на родительских группах */
-.single-post .wp-block-group:has(> .wp-block-comments) {
-    margin-top: 0 !important;
-    padding-top: 0 !important;
-    margin-bottom: 0 !important;
-    padding-bottom: 0 !important;
-}
-
-/* Убираем лишние отступы у блока комментариев */
-.single-post .wp-block-comments {
-    margin-bottom: 20px !important;
-    padding-bottom: 0 !important;
-}
-
-/* === More posts compact (single only) === */
-.single-post .oasis-more-posts {
-    margin-top: 20px !important;
-    margin-bottom: 20px !important;
-    padding-top: 0 !important;
-    padding-bottom: 0 !important;
-}
-
-.single-post .oasis-more-posts .wp-block-heading {
-    margin: 12px 0 8px !important;
-}
-
-/* Уменьшаем отступ перед футером */
-.single-post main.wp-block-group {
-    margin-bottom: 0 !important;
-    padding-bottom: 20px !important;
-}
-
-
-/* Глобальная очистка блока (ПК и мобильные) */
-.single-post .oasis-more-posts .wp-block-post .wp-block-group {
-    display: flex !important;
-    flex-direction: row !important;
-    justify-content: space-between !important;
-    align-items: baseline !important;
-    padding: 4px 0 !important;
-    border-bottom: none !important;
-    border-top: none !important;
-    width: 100% !important;
-    box-sizing: border-box !important;
-    margin: 0 !important;
-}
-
-.single-post .oasis-more-posts .wp-block-post:last-child .wp-block-group {
-    border-bottom: none !important;
-}
-
-.single-post .oasis-more-posts .wp-block-post-title {
-    margin: 0 !important;
-    text-align: left !important;
-    font-size: 12pt !important;
-}
-
-.single-post .oasis-more-posts .wp-block-post-date {
-    margin-top: 0 !important;
-    opacity: 0.6;
-    font-size: 12pt !important;
-}
-
-/* mobile: 2 columns, compact text */
 @media (max-width: 768px) {
     .single-post .oasis-more-posts {
         width: 100% !important;
-        max-width: 100% !important;
-        padding-left: 15px !important;
-        padding-right: 15px !important;
-        box-sizing: border-box !important;
-        margin-left: 0 !important;
-        margin-right: 0 !important;
-    }
 
-    .single-post .oasis-more-posts .wp-block-post-template {
-        display: flex !important;
-        flex-direction: column !important;
-        width: 100% !important;
-        padding: 0 !important;
-        margin: 0 !important;
-        gap: 0 !important;
-        list-style: none !important;
-    }
+        /* --- Single Post: Buttons Centering --- */
+        @media (min-width: 1025px) {
+            .oasis-cta {
+                max-width: var(--wp--style--global--content-size);
+                margin: 40px auto;
+                text-align: center;
+            }
 
-    .single-post .oasis-more-posts .wp-block-post {
-        width: 100% !important;
-        margin: 0 !important;
-        padding: 0 !important;
-    }
+            .oasis-cta .wp-block-buttons {
+                justify-content: center !important;
+                flex-wrap: wrap !important;
+                gap: 12px !important;
+            }
 
-    /* Одна запись на строку: заголовок слева, дата справа */
-    /* Одна запись на строку: заголовок слева, дата справа */
-    .single-post .oasis-more-posts .wp-block-post .wp-block-group {
-        display: flex !important;
-        flex-direction: row !important;
-        justify-content: space-between !important;
-        align-items: baseline !important;
-        padding: 4px 0 !important;
-        /* Максимально уменьшенный интервал */
-        border-bottom: none !important;
-        /* Убираем полоски */
-        width: 100% !important;
-        box-sizing: border-box !important;
-        margin: 0 !important;
-        border-top: none !important;
-    }
+            .oasis-cta .wp-block-button__link {
+                white-space: nowrap;
+            }
 
-    .single-post .oasis-more-posts .wp-block-post:last-child .wp-block-group {
-        border-bottom: none !important;
-    }
+            /* маленькая кнопка "Открыть страницу" - если она внутри oasis-cta */
+            .oasis-cta .oasis-open-page .wp-block-button__link,
+            .oasis-open-source-wrap .oasis-open-source-btn {
+                display: inline-flex;
+                margin: 10px auto;
+            }
 
-    .single-post .oasis-more-posts .wp-block-post-title {
-        font-size: 12pt !important;
-        line-height: 1.2 !important;
-        margin: 0 !important;
-        flex: 1 1 auto !important;
-        white-space: nowrap !important;
-        overflow: hidden !important;
-        text-overflow: ellipsis !important;
-        text-align: left !important;
-    }
+            /* Принудительное центрирование для блока кнопок в контенте, если они там остались */
+            .blog .wp-block-post-content .wp-block-buttons,
+            .single .wp-block-post-content .wp-block-buttons {
+                justify-content: center !important;
+            }
+        }
 
-    .single-post .oasis-more-posts a {
-        text-decoration: none;
-        display: inline !important;
-    }
+        /* Центрирование обертки "Открыть страницу" */
+        .oasis-open-source-wrap {
+            text-align: center;
+            width: 100%;
+            display: block;
+        }
 
-    .single-post .oasis-more-posts .wp-block-post-date {
-        font-size: 12pt !important;
-        line-height: 1 !important;
-        opacity: 0.6;
-        margin-left: 12px !important;
-        white-space: nowrap !important;
-        flex: 0 0 auto !important;
-        margin-top: 0 !important;
-    }
-}
+        /* === Single post: booking block compact + centered === */
+        .single-post .oasis-booking,
+        .single-post .oasis-cta {
+            max-width: 760px;
+            margin-left: auto;
+            margin-right: auto;
+        }
 
-/* === Final Fixing for Booking Buttons on Mobile === */
-@media (max-width: 768px) {
+        .single-post .oasis-booking .wp-block-buttons,
+        .single-post .oasis-cta .wp-block-buttons {
+            display: flex !important;
+            flex-direction: row !important;
+            flex-wrap: wrap !important;
+            justify-content: center !important;
+            gap: 10px !important;
+            margin-top: 12px !important;
+            margin-bottom: 8px !important;
+        }
 
-    .single-post .oasis-booking .wp-block-buttons,
-    .single-post .oasis-cta .wp-block-buttons {
-        flex-direction: row !important;
-        flex-wrap: wrap !important;
-        justify-content: center !important;
-        display: flex !important;
-    }
+        .single-post .oasis-booking .wp-block-button,
+        .single-post .oasis-cta .wp-block-button {
+            margin: 0 !important;
+        }
 
-    .single-post .oasis-booking .wp-block-button,
-    .single-post .oasis-cta .wp-block-button {
-        flex: 0 1 auto !important;
-        width: auto !important;
-    }
-}
+        .single-post .oasis-booking .wp-block-button__link,
+        .single-post .oasis-cta .wp-block-button__link {
+            white-space: nowrap !important;
+        }
+
+        /* Убрать огромную пустоту после блока бронирования */
+        .single-post .oasis-booking,
+        .single-post .oasis-cta {
+            padding-bottom: 0 !important;
+            margin-bottom: 10px !important;
+        }
+
+        /* Если после бронирования сразу идет разделитель/линия - подтянуть ближе */
+        .single-post .oasis-booking+hr,
+        .single-post .oasis-booking+.wp-block-separator,
+        .single-post .oasis-cta+hr,
+        .single-post .oasis-cta+.wp-block-separator {
+            margin-top: 10px !important;
+            margin-bottom: 14px !important;
+        }
+
+        /* Скрываем заголовок непосредственно перед блоком */
+        .single-post h2:has(+ .oasis-booking),
+        .single-post h3:has(+ .oasis-booking),
+        .single-post h2:has(+ .oasis-cta),
+        .single-post h3:has(+ .oasis-cta) {
+            display: none !important;
+            margin: 0 !important;
+        }
+
+        /* === Single: nav compact on mobile (works for classic + block) === */
+        @media (max-width: 768px) {
+
+            /* classic navigation */
+            .single-post nav.navigation.post-navigation .nav-links {
+                display: flex !important;
+                justify-content: space-between !important;
+                gap: 12px !important;
+                align-items: center !important;
+            }
+
+            .single-post nav.navigation.post-navigation .nav-previous,
+            .single-post nav.navigation.post-navigation .nav-next {
+                flex: 1 1 0;
+                margin: 0 !important;
+            }
+
+            .single-post nav.navigation.post-navigation a {
+                display: inline-flex;
+                align-items: center;
+                gap: 8px;
+                white-space: nowrap;
+            }
+
+            /* block navigation */
+            .single-post .wp-block-post-navigation-link {
+                display: inline-flex !important;
+                white-space: nowrap;
+            }
+
+            .single-post .wp-block-post-navigation-link+.wp-block-post-navigation-link {
+                margin-left: 12px !important;
+            }
+
+            .single-post .wp-block-post-navigation-link__content {
+                white-space: nowrap;
+            }
+        }
+
+
+
+
+        /* === Hide "Комментарии" title === */
+        .single-post .wp-block-comments>h2.wp-block-heading,
+        .single-post .wp-block-comments>.wp-block-comments-title,
+        .single-post .comments-title,
+        .single-post #comments-title {
+            display: none !important;
+        }
+
+        /* === Уменьшение отступов между блоками === */
+        /* Убираем лишние отступы у навигации по записям */
+        .single-post nav[aria-label="Навигация по записям"],
+        .single-post .wp-block-group[aria-label] {
+            padding-top: 15px !important;
+            padding-bottom: 15px !important;
+            margin-top: 0 !important;
+            margin-bottom: 0 !important;
+        }
+
+        /* Убираем отступы у блока комментариев */
+        .single-post .wp-block-comments {
+            margin-top: 15px !important;
+            padding-top: 0 !important;
+        }
+
+        /* Убираем spacing на родительских группах */
+        .single-post .wp-block-group:has(> .wp-block-comments) {
+            margin-top: 0 !important;
+            padding-top: 0 !important;
+            margin-bottom: 0 !important;
+            padding-bottom: 0 !important;
+        }
+
+        /* Убираем лишние отступы у блока комментариев */
+        .single-post .wp-block-comments {
+            margin-bottom: 20px !important;
+            padding-bottom: 0 !important;
+        }
+
+        /* === More posts compact (single only) === */
+        .single-post .oasis-more-posts {
+            margin-top: 20px !important;
+            margin-bottom: 20px !important;
+            padding-top: 0 !important;
+            padding-bottom: 0 !important;
+        }
+
+        .single-post .oasis-more-posts .wp-block-heading {
+            margin: 12px 0 8px !important;
+        }
+
+        /* Уменьшаем отступ перед футером */
+        .single-post main.wp-block-group {
+            margin-bottom: 0 !important;
+            padding-bottom: 20px !important;
+        }
+
+
+        /* Глобальная очистка блока (ПК и мобильные) */
+        .single-post .oasis-more-posts .wp-block-post .wp-block-group {
+            display: flex !important;
+            flex-direction: row !important;
+            justify-content: space-between !important;
+            align-items: baseline !important;
+            padding: 4px 0 !important;
+            border-bottom: none !important;
+            border-top: none !important;
+            width: 100% !important;
+            box-sizing: border-box !important;
+            margin: 0 !important;
+        }
+
+        .single-post .oasis-more-posts .wp-block-post:last-child .wp-block-group {
+            border-bottom: none !important;
+        }
+
+        .single-post .oasis-more-posts .wp-block-post-title {
+            margin: 0 !important;
+            text-align: left !important;
+            font-size: 12pt !important;
+        }
+
+        .single-post .oasis-more-posts .wp-block-post-date {
+            margin-top: 0 !important;
+            opacity: 0.6;
+            font-size: 12pt !important;
+        }
+
+        /* mobile: 2 columns, compact text */
+        @media (max-width: 768px) {
+            .single-post .oasis-more-posts {
+                width: 100% !important;
+                max-width: 100% !important;
+                padding-left: 15px !important;
+                padding-right: 15px !important;
+                box-sizing: border-box !important;
+                margin-left: 0 !important;
+                margin-right: 0 !important;
+            }
+
+            .single-post .oasis-more-posts .wp-block-post-template {
+                display: flex !important;
+                flex-direction: column !important;
+                width: 100% !important;
+                padding: 0 !important;
+                margin: 0 !important;
+                gap: 0 !important;
+                list-style: none !important;
+            }
+
+            .single-post .oasis-more-posts .wp-block-post {
+                width: 100% !important;
+                margin: 0 !important;
+                padding: 0 !important;
+            }
+
+            /* Одна запись на строку: заголовок слева, дата справа */
+            /* Одна запись на строку: заголовок слева, дата справа */
+            .single-post .oasis-more-posts .wp-block-post .wp-block-group {
+                display: flex !important;
+                flex-direction: row !important;
+                justify-content: space-between !important;
+                align-items: baseline !important;
+                padding: 4px 0 !important;
+                /* Максимально уменьшенный интервал */
+                border-bottom: none !important;
+                /* Убираем полоски */
+                width: 100% !important;
+                box-sizing: border-box !important;
+                margin: 0 !important;
+                border-top: none !important;
+            }
+
+            .single-post .oasis-more-posts .wp-block-post:last-child .wp-block-group {
+                border-bottom: none !important;
+            }
+
+            .single-post .oasis-more-posts .wp-block-post-title {
+                font-size: 12pt !important;
+                line-height: 1.2 !important;
+                margin: 0 !important;
+                flex: 1 1 auto !important;
+                white-space: nowrap !important;
+                overflow: hidden !important;
+                text-overflow: ellipsis !important;
+                text-align: left !important;
+            }
+
+            .single-post .oasis-more-posts a {
+                text-decoration: none;
+                display: inline !important;
+            }
+
+            .single-post .oasis-more-posts .wp-block-post-date {
+                font-size: 12pt !important;
+                line-height: 1 !important;
+                opacity: 0.6;
+                margin-left: 12px !important;
+                white-space: nowrap !important;
+                flex: 0 0 auto !important;
+                margin-top: 0 !important;
+            }
+        }
+
+        /* === Final Fixing for Booking Buttons on Mobile === */
+        @media (max-width: 768px) {
+
+            .single-post .oasis-booking .wp-block-buttons,
+            .single-post .oasis-cta .wp-block-buttons {
+                flex-direction: row !important;
+                flex-wrap: wrap !important;
+                justify-content: center !important;
+                display: flex !important;
+            }
+
+            .single-post .oasis-booking .wp-block-button,
+            .single-post .oasis-cta .wp-block-button {
+                flex: 0 1 auto !important;
+                width: auto !important;
+            }
+        }
