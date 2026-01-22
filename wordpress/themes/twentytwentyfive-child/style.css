@@ -1332,6 +1332,33 @@ header button.oasis-burger,
     .single .wp-block-post-content .wp-block-buttons {
         justify-content: center !important;
     }
+
+    /* --- Блок иконок связи (вместо кнопок) --- */
+    .oasis-social-icons {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 16px;
+        margin-top: 24px;
+        margin-bottom: 24px;
+    }
+
+    .oasis-social-icon {
+        display: inline-flex;
+        transition: transform 0.2s ease, filter 0.2s ease;
+        text-decoration: none !important;
+    }
+
+    .oasis-social-icon:hover {
+        transform: scale(1.1);
+        filter: brightness(1.1);
+    }
+
+    .oasis-social-icon svg {
+        display: block;
+        width: 40px;
+        height: 40px;
+    }
 }
 
 /* Центрирование обертки "Открыть страницу" */
