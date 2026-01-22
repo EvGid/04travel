@@ -1200,8 +1200,8 @@ header button.oasis-burger,
     outline: none !important;
 }
 
-/* --- Исправление сетки блога на ПК --- */
-@media (min-width: 1025px) {
+/* --- Исправление сетки блога на ПК и Планшетах --- */
+@media (min-width: 769px) {
 
     /* контейнер блога - строго по центру */
     body.blog .wp-site-blocks main {
