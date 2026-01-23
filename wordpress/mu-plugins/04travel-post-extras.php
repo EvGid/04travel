@@ -215,3 +215,26 @@ add_shortcode('oasis_social_reactions', function($atts) {
     <?php
     return ob_get_clean();
 });
+
+/**
+ * Customize WordPress comment form:
+ * 1. Change title from "Добавить комментарий" to "Комментарии"
+ * 2. Add "Войти, чтобы комментировать" link for non-logged-in users
+ * 3. Keep the form visible for everyone
+ */
+add_filter('comment_form_defaults', function($defaults) {
+    // Change the title
+    $defaults['title_reply'] = 'Комментарии';
+    $defaults['title_reply_to'] = 'Ответ на комментарий %s';
+    
+    // Add login link at the bottom for non-logged-in users
+    if (!is_user_logged_in()) {
+        $login_url = wp_login_url(get_permalink());
+        $defaults['submit_field'] = '<p class="form-submit">%1$s %2$s</p>
+            <p class="oasis-login-to-comment" style="text-align: right; margin-top: 10px;">
+                <a href="' . esc_url($login_url) . '" style="color: #c9302c; text-decoration: none; font-size: 14px;">Войти, чтобы комментировать</a>
+            </p>';
+    }
+    
+    return $defaults;
+});
