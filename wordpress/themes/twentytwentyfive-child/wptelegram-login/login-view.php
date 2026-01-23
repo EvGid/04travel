@@ -2,7 +2,6 @@
 /**
  * Overridden template for WP Telegram Login
  * Location: wp-content/themes/twentytwentyfive-child/wptelegram-login/login-view.php
- * VK ID widget removed to avoid duplication - VK buttons come from Heateor Social Login
  */
 
 // Original plugin logic to prepare $html
@@ -37,7 +36,55 @@ $html = sprintf(
 );
 ?>
 <div class="wptelegram-login-output-wrap container">
-	<div style="text-align: center;">
+	<div style="text-align: center; margin-bottom: 20px;">
 		<?php echo $html; ?>
 	</div>
+    
+    <!-- VK ID Authorization Widget -->
+    <div style="margin-top: 15px; text-align: center;">
+        <div id="vkid-auth-container"></div>
+
+        <script nonce="csp_nonce" src="https://unpkg.com/@vkid/sdk@<3.0.0/dist-sdk/umd/index.js"></script>
+        <script nonce="csp_nonce" type="text/javascript">
+            if ('VKIDSDK' in window) {
+                const VKID = window.VKIDSDK;
+
+                VKID.Config.init({
+                    app: 54427215,
+                    redirectUrl: 'https://wp.04travel.ru',
+                    responseMode: VKID.ConfigResponseMode.Callback,
+                    source: VKID.ConfigSource.LOWCODE,
+                    scope: '', 
+                });
+
+                const oAuth = new VKID.OAuthList();
+
+                oAuth.render({
+                    container: document.getElementById('vkid-auth-container'),
+                    oauthList: [
+                        'vkid',
+                        'mail_ru',
+                        'ok_ru'
+                    ]
+                })
+                .on(VKID.WidgetEvents.ERROR, vkidOnError)
+                .on(VKID.OAuthListInternalEvents.LOGIN_SUCCESS, function (payload) {
+                    const code = payload.code;
+                    const deviceId = payload.device_id;
+
+                    VKID.Auth.exchangeCode(code, deviceId)
+                        .then(vkidOnSuccess)
+                        .catch(vkidOnError);
+                });
+            
+                function vkidOnSuccess(data) {
+                    console.log('VKID Success:', data);
+                }
+            
+                function vkidOnError(error) {
+                    console.error('VKID Error:', error);
+                }
+            }
+        </script>
+    </div>
 </div>
