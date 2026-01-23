@@ -1647,3 +1647,11 @@ header button.oasis-burger,
         width: auto !important;
     }
 }
+
+/* Hide "Обязательные поля помечены *" message in comment form */
+.comment-notes,
+.comment-form .comment-notes,
+.wp-block-post-comments-form .comment-notes,
+p.comment-notes {
+    display: none !important;
+}
