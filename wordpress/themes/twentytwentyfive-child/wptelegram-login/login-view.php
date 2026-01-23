@@ -34,57 +34,58 @@ $html = sprintf(
 	esc_url( $login_options['callback_url'] ),
 	$atts
 );
+
+// Unique container ID to prevent duplicate VK ID widgets
+$vkid_container_id = 'vkid-auth-' . uniqid();
 ?>
 <div class="wptelegram-login-output-wrap container">
 	<div style="text-align: center; margin-bottom: 20px;">
 		<?php echo $html; ?>
 	</div>
     
-    <!-- VK ID Authorization Widget -->
+    <!-- VK ID Authorization Widget (rendered only once per page) -->
+    <?php if (!defined('VKID_WIDGET_RENDERED')): ?>
+    <?php define('VKID_WIDGET_RENDERED', true); ?>
     <div style="margin-top: 15px; text-align: center;">
-        <div id="vkid-auth-container"></div>
+        <div id="<?php echo esc_attr($vkid_container_id); ?>"></div>
 
-        <script nonce="csp_nonce" src="https://unpkg.com/@vkid/sdk@<3.0.0/dist-sdk/umd/index.js"></script>
-        <script nonce="csp_nonce" type="text/javascript">
-            if ('VKIDSDK' in window) {
-                const VKID = window.VKIDSDK;
+        <script src="https://unpkg.com/@vkid/sdk@<3.0.0/dist-sdk/umd/index.js"></script>
+        <script type="text/javascript">
+            (function() {
+                if ('VKIDSDK' in window && !window.vkidInitialized) {
+                    window.vkidInitialized = true;
+                    const VKID = window.VKIDSDK;
 
-                VKID.Config.init({
-                    app: 54427215,
-                    redirectUrl: 'https://wp.04travel.ru',
-                    responseMode: VKID.ConfigResponseMode.Callback,
-                    source: VKID.ConfigSource.LOWCODE,
-                    scope: '', 
-                });
+                    VKID.Config.init({
+                        app: 54427215,
+                        redirectUrl: 'https://wp.04travel.ru',
+                        responseMode: VKID.ConfigResponseMode.Callback,
+                        source: VKID.ConfigSource.LOWCODE,
+                        scope: '', 
+                    });
 
-                const oAuth = new VKID.OAuthList();
-
-                oAuth.render({
-                    container: document.getElementById('vkid-auth-container'),
-                    oauthList: [
-                        'vkid',
-                        'mail_ru',
-                        'ok_ru'
-                    ]
-                })
-                .on(VKID.WidgetEvents.ERROR, vkidOnError)
-                .on(VKID.OAuthListInternalEvents.LOGIN_SUCCESS, function (payload) {
-                    const code = payload.code;
-                    const deviceId = payload.device_id;
-
-                    VKID.Auth.exchangeCode(code, deviceId)
-                        .then(vkidOnSuccess)
-                        .catch(vkidOnError);
-                });
-            
-                function vkidOnSuccess(data) {
-                    console.log('VKID Success:', data);
+                    const oAuth = new VKID.OAuthList();
+                    const container = document.getElementById('<?php echo esc_js($vkid_container_id); ?>');
+                    
+                    if (container) {
+                        oAuth.render({
+                            container: container,
+                            oauthList: ['vkid', 'mail_ru', 'ok_ru']
+                        })
+                        .on(VKID.WidgetEvents.ERROR, function(error) {
+                            console.error('VKID Error:', error);
+                        })
+                        .on(VKID.OAuthListInternalEvents.LOGIN_SUCCESS, function (payload) {
+                            const code = payload.code;
+                            const deviceId = payload.device_id;
+                            VKID.Auth.exchangeCode(code, deviceId)
+                                .then(function(data) { console.log('VKID Success:', data); })
+                                .catch(function(error) { console.error('VKID Error:', error); });
+                        });
+                    }
                 }
-            
-                function vkidOnError(error) {
-                    console.error('VKID Error:', error);
-                }
-            }
+            })();
         </script>
     </div>
+    <?php endif; ?>
 </div>
