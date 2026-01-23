@@ -49,10 +49,10 @@ function travel_modify_comment_form_defaults($defaults) {
         $social_buttons = '<div class="travel-social-login-inline" style="margin: 20px 0;">';
         $social_buttons .= '<p style="margin-bottom: 15px;">Войдите через:</p>';
         
-        // Heateor Social Login
-        if (function_exists('the_champ_login_button')) {
-            $social_buttons .= do_shortcode('[TheChamp-Login]');
-        }
+        // Heateor Social Login - DISABLED (VK ID is included via wptelegram login-view.php)
+        // if (function_exists('the_champ_login_button')) {
+        //     $social_buttons .= do_shortcode('[TheChamp-Login]');
+        // }
         
         // Telegram Login
         if (function_exists('wptelegram_login')) {
