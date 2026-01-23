@@ -227,6 +227,9 @@ add_filter('comment_form_defaults', function($defaults) {
     $defaults['title_reply'] = '';
     $defaults['title_reply_to'] = 'Ответ на комментарий %s';
     
+    // Hide "Обязательные поля помечены *"
+    $defaults['comment_notes_before'] = '';
+    
     // Customize comment field label (larger font)
     $defaults['comment_field'] = '<p class="comment-form-comment"><label for="comment" style="font-size: 16px;">Комментарий<span class="required">*</span></label><textarea id="comment" name="comment" cols="45" rows="8" maxlength="65525" required="required"></textarea></p>';
     
