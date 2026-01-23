@@ -223,8 +223,8 @@ add_shortcode('oasis_social_reactions', function($atts) {
  * 3. Increase font size for "Комментарий*" label
  */
 add_filter('comment_form_defaults', function($defaults) {
-    // Change the title
-    $defaults['title_reply'] = 'Комментарии';
+    // Hide the title (was "Комментарии")
+    $defaults['title_reply'] = '';
     $defaults['title_reply_to'] = 'Ответ на комментарий %s';
     
     // Customize comment field label (larger font)
