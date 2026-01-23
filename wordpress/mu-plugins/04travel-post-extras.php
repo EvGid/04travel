@@ -219,22 +219,159 @@ add_shortcode('oasis_social_reactions', function($atts) {
 /**
  * Customize WordPress comment form:
  * 1. Change title from "Добавить комментарий" to "Комментарии"
- * 2. Add "Войти, чтобы комментировать" link for non-logged-in users
- * 3. Keep the form visible for everyone
+ * 2. Add "Войти, чтобы комментировать" link with modal popup
+ * 3. Increase font size for "Комментарий*" label
  */
 add_filter('comment_form_defaults', function($defaults) {
     // Change the title
     $defaults['title_reply'] = 'Комментарии';
     $defaults['title_reply_to'] = 'Ответ на комментарий %s';
     
-    // Add login link at the bottom for non-logged-in users
+    // Customize comment field label (larger font)
+    $defaults['comment_field'] = '<p class="comment-form-comment"><label for="comment" style="font-size: 16px;">Комментарий<span class="required">*</span></label><textarea id="comment" name="comment" cols="45" rows="8" maxlength="65525" required="required"></textarea></p>';
+    
+    // Add login modal trigger for non-logged-in users
     if (!is_user_logged_in()) {
-        $login_url = wp_login_url(get_permalink());
         $defaults['submit_field'] = '<p class="form-submit">%1$s %2$s</p>
             <p class="oasis-login-to-comment" style="text-align: right; margin-top: 10px;">
-                <a href="' . esc_url($login_url) . '" style="color: #c9302c; text-decoration: none; font-size: 14px;">Войти, чтобы комментировать</a>
+                <a href="#" onclick="event.preventDefault(); document.getElementById(\'oasis-login-modal\').classList.add(\'open\');" style="color: #c9302c; text-decoration: none; font-size: 14px;"><strong>Войти</strong>, чтобы комментировать</a>
             </p>';
     }
     
     return $defaults;
+}, 20); // Priority 20 to override other filters
+
+/**
+ * Add login modal HTML and CSS to footer
+ */
+add_action('wp_footer', function() {
+    if (is_user_logged_in()) return;
+    ?>
+    <!-- Oasis Login Modal -->
+    <div id="oasis-login-modal" class="oasis-login-modal">
+        <div class="oasis-login-modal__overlay" onclick="this.parentElement.classList.remove('open');"></div>
+        <div class="oasis-login-modal__content">
+            <button type="button" class="oasis-login-modal__close" onclick="this.closest('.oasis-login-modal').classList.remove('open');">&times;</button>
+            <h3 class="oasis-login-modal__title">Войдите через:</h3>
+            <div class="oasis-login-modal__buttons">
+                <?php
+                // Heateor Social Login (VK, OK, etc.)
+                if (function_exists('the_champ_login_button')) {
+                    echo do_shortcode('[TheChamp-Login]');
+                }
+                
+                // Telegram Login
+                if (function_exists('wptelegram_login')) {
+                    echo '<div class="oasis-login-modal__telegram">';
+                    echo do_shortcode('[wptelegram-login button_style="large" show_user_photo="0" corner_radius="8" lang="ru"]');
+                    echo '</div>';
+                }
+                ?>
+            </div>
+        </div>
+    </div>
+    
+    <style>
+    /* Login Modal Styles */
+    .oasis-login-modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 999999;
+    }
+    .oasis-login-modal.open {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .oasis-login-modal__overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+    }
+    .oasis-login-modal__content {
+        position: relative;
+        background: #fff;
+        border-radius: 16px;
+        padding: 30px 40px;
+        min-width: 320px;
+        max-width: 400px;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+        text-align: center;
+        z-index: 1;
+    }
+    .oasis-login-modal__close {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        background: none;
+        border: none;
+        font-size: 28px;
+        cursor: pointer;
+        color: #999;
+        line-height: 1;
+        padding: 0;
+    }
+    .oasis-login-modal__close:hover {
+        color: #333;
+    }
+    .oasis-login-modal__title {
+        margin: 0 0 25px;
+        font-size: 20px;
+        font-weight: 600;
+        color: #333;
+    }
+    .oasis-login-modal__buttons {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+    .oasis-login-modal__buttons .theChampLogin {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        justify-content: center;
+    }
+    .oasis-login-modal__buttons .theChampLoginButton {
+        margin: 5px !important;
+        border-radius: 8px !important;
+    }
+    .oasis-login-modal__telegram {
+        margin-top: 10px;
+    }
+    
+    /* Comment form label styling */
+    .comment-form-comment label {
+        font-size: 16px !important;
+        font-weight: 500;
+    }
+    
+    /* Mobile responsive */
+    @media (max-width: 480px) {
+        .oasis-login-modal__content {
+            margin: 20px;
+            padding: 25px 20px;
+            min-width: auto;
+            width: calc(100% - 40px);
+        }
+    }
+    </style>
+    
+    <script>
+    // Close modal on Escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            var modal = document.getElementById('oasis-login-modal');
+            if (modal) modal.classList.remove('open');
+        }
+    });
+    </script>
+    <?php
 });
