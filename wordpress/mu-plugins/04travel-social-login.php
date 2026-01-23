@@ -69,8 +69,8 @@ function travel_modify_comment_form_defaults($defaults) {
     
     return $defaults;
 }
-// Disabled - now using modal popup from 04travel-post-extras.php
-// add_filter('comment_form_defaults', 'travel_modify_comment_form_defaults');
+// Re-enabled - shows social buttons instead of default "must log in" message
+add_filter('comment_form_defaults', 'travel_modify_comment_form_defaults');
 
 /**
  * Add custom CSS for social login buttons
