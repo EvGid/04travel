@@ -4,6 +4,7 @@ import SocialLinks from './SocialLinks';
 import Footer from './Footer';
 import ChatbudAssistant from './ChatbudAssistant';
 import ScrollToTop from './ScrollToTop';
+import CookieConsent from './CookieConsent';
 import type { ViewState } from '../App';
 
 const navigation = [
@@ -128,6 +129,7 @@ const Layout: React.FC<LayoutProps> = ({ children, view, setView }) => {
       <Footer setView={setView} />
       <ChatbudAssistant setView={setView} />
       <ScrollToTop />
+      <CookieConsent setView={setView} />
     </div>
   );
 };

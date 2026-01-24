@@ -163,13 +163,15 @@ const PostDetailPage: React.FC<PostDetailPageProps> = ({ postId, setView }) => {
         className="content-container wp-content prose max-w-none text-[#2C3531]"
         dangerouslySetInnerHTML={{ __html: rawHtml }}
       />
-      <SocialReactions
-        postId={String(page?.wp_id || postId)}
-        postUrl={`https://04travel.ru/blog/${postId}`}
-        postTitle={page?.title || 'Статья'}
-        commentsCount={0}
-        supportUrl="#support"
-      />
+      {!(page?.slug === 'cookies' || page?.slug === 'политикка-куки' || page?.title === 'Cookies') && (
+        <SocialReactions
+          postId={String(page?.wp_id || postId)}
+          postUrl={`https://04travel.ru/blog/${postId}`}
+          postTitle={page?.title || 'Статья'}
+          commentsCount={0}
+          supportUrl="#support"
+        />
+      )}
       <BookingActions />
     </div>
   );

@@ -53,8 +53,8 @@ const Footer: React.FC<FooterProps> = ({ setView }) => {
             <ul className="footer-nav-list space-y-4 text-white/70 text-sm">
               <li><button onClick={() => handleNav('postDetail', '%d0%bf%d0%be%d0%bb%d0%b8%d1%82%d0%b8%d0%ba%d0%b0-%d0%ba%d0%be%d0%bd%d1%84%d0%b8%d0%b4%d0%b5%d0%bd%d1%86%d0%b8%d0%b0%d0%bb%d1%8c%d0%bd%d0%be%d1%81%d1%82%d0%b8')} className="hover:text-white transition-colors text-left">Политика конфиденциальности</button></li>
               <li><button className="hover:text-white transition-colors text-left">Политика отмены</button></li>
-              <li><button className="hover:text-white transition-colors text-left">Реестр туроператоров</button></li>
-              <li><button onClick={() => handleNav('postDetail', '%d0%bf%d0%be%d0%bb%d0%b8%d1%82%d0%b8%d0%ba%d0%ba%d0%b0-%d1%83%d0%ba%d0%b8')} className="hover:text-white transition-colors text-left">Cookies</button></li>
+              <li><a href="https://www.economy.gov.ru/material/directions/turizm/reestry_turizm/edinyy_federalnyy_reestr_turoperatorov/" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">Реестр туроператоров</a></li>
+              <li><button onClick={() => handleNav('postDetail', 'cookies')} className="hover:text-white transition-colors text-left">Cookies</button></li>
             </ul>
           </div>
 

@@ -61,6 +61,7 @@ export const SLUG_ALIASES: { [key: string]: string } = {
   'chuyskiy-trakt': 'чуйский-тракт-туры-и-маршрут',
   'teleckoe-ozero': 'телецкое-озеро-туры-и-экскурсии',
   'geyzerovoe-ozero-na-altae-kak-popast-i-tury': 'гейзеровое-озеро-на-алтае-как-попасть',
+
 };
 
 export enum PageCategory {
@@ -177,8 +178,15 @@ export const getAllPages = async (): Promise<IPageData[]> => {
 export const getPageBySlug = async (slug: string): Promise<IPageData | null> => {
   await ensureLoaded();
   if (!slug) return null;
-  const lower = slug.toLowerCase();
-  return pagesBySlug.get(lower) || null;
+
+  let decoded = slug;
+  try {
+    decoded = decodeURIComponent(slug).toLowerCase();
+  } catch (e) {
+    decoded = slug.toLowerCase();
+  }
+
+  return pagesBySlug.get(decoded) || null;
 };
 
 export const getPageCategory = (page: IPageData): PageCategory => {
@@ -189,7 +197,8 @@ export const getPageCategory = (page: IPageData): PageCategory => {
     page.title === 'О нас' ||
     page.title === 'Контакты' ||
     page.title === 'ЧаВо' ||
-    page.title.toLowerCase().includes('политика')
+    page.title.toLowerCase().includes('политика') ||
+    page.title.toLowerCase() === 'cookies'
   ) return PageCategory.SYSTEM;
 
   return PageCategory.SYSTEM;

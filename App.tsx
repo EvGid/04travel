@@ -55,7 +55,7 @@ const resolveViewFromPath = (path: string): ViewState => {
       return { page: 'excursionDetail', params: { excursionId: encodeURIComponent(canonicalSlug) } };
     }
 
-    return { page: 'postDetail', params: { postId: slug } };
+    return { page: 'postDetail', params: { postId: canonicalSlug } };
 
   } catch (e) {
     console.warn("Could not resolve path:", path, e);
