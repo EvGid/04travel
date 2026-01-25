@@ -5,6 +5,8 @@ import type { IPageData } from '../types';
 import type { ViewState } from '../App';
 import PageNavigator from '../components/PageNavigator';
 import BookingActions from '../components/BookingActions';
+import SocialReactions from '../components/SocialReactions';
+import '../components/SocialReactions.css';
 
 interface ExcursionDetailPageProps {
   excursionId: string;
@@ -180,6 +182,13 @@ const ExcursionDetailPage: React.FC<ExcursionDetailPageProps> = ({ excursionId, 
         ref={contentRef}
         className="content-container wp-content prose max-w-none text-[#2C3531]"
         dangerouslySetInnerHTML={{ __html: rawHtml }}
+      />
+      <SocialReactions
+        postId={String(page?.wp_id || excursionId)}
+        postUrl={`https://04travel.ru/ekskursii/${excursionId}`}
+        postTitle={page?.title || 'Экскурсия на Алтай'}
+        commentsCount={0}
+        supportUrl="#support"
       />
       <BookingActions />
     </div>

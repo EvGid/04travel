@@ -127,6 +127,17 @@ const SocialReactions: React.FC<SocialReactionsProps> = ({
                     <span className="reaction-btn__count">{likes}</span>
                 </button>
 
+                {/* Dislike */}
+                <button
+                    className={`reaction-btn reaction-btn--dislike ${userDisliked ? 'active' : ''}`}
+                    onClick={handleDislike}
+                    title="Не нравится"
+                >
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M17 2V13M22 11V4C22 2.89543 21.1046 2 20 2H6.57385C5.09299 2 3.83382 3.08028 3.60862 4.54379L2.53165 11.5438C2.25207 13.3611 3.65818 15 5.49687 15H9C9.55228 15 10 15.4477 10 16V19.5342C10 20.896 11.104 22 12.4658 22C12.7907 22 13.085 21.8087 13.2169 21.5119L16.7361 13.5939C16.8966 13.2327 17.2547 13 17.6499 13H20C21.1046 13 22 12.1046 22 11Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                </button>
+
                 {/* Comments */}
                 <a href="#comments" className="reaction-btn reaction-btn--comments" title="Комментарии">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -172,27 +183,8 @@ const SocialReactions: React.FC<SocialReactionsProps> = ({
                         </button>
                     </div>
                 </div>
-
-                {/* Dislike */}
-                <button
-                    className={`reaction-btn reaction-btn--dislike ${userDisliked ? 'active' : ''}`}
-                    onClick={handleDislike}
-                    title="Не нравится"
-                >
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M17 2V13M22 11V4C22 2.89543 21.1046 2 20 2H6.57385C5.09299 2 3.83382 3.08028 3.60862 4.54379L2.53165 11.5438C2.25207 13.3611 3.65818 15 5.49687 15H9C9.55228 15 10 15.4477 10 16V19.5342C10 20.896 11.104 22 12.4658 22C12.7907 22 13.085 21.8087 13.2169 21.5119L16.7361 13.5939C16.8966 13.2327 17.2547 13 17.6499 13H20C21.1046 13 22 12.1046 22 11Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                    </svg>
-                </button>
             </div>
 
-            <div className="social-reactions__right">
-                <a href={supportUrl} className="support-btn">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                    </svg>
-                    <span>Поддержать</span>
-                </a>
-            </div>
         </div>
     );
 };

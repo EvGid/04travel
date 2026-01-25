@@ -1,7 +1,7 @@
 /* Social Reactions Widget */
 .social-reactions {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     padding: 16px 0;
     margin: 24px 0;
@@ -15,10 +15,6 @@
     gap: 8px;
 }
 
-.social-reactions__right {
-    display: flex;
-    align-items: center;
-}
 
 .reaction-btn {
     display: inline-flex;
@@ -140,54 +136,38 @@
     flex-shrink: 0;
 }
 
-.support-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 10px 20px;
-    background: #4A5D4E;
-    color: #fff;
-    font-size: 14px;
-    font-weight: 600;
-    border-radius: 24px;
-    text-decoration: none;
-    transition: all 0.2s ease;
-    border: none;
-    cursor: pointer;
-}
-
-.support-btn:hover {
-    background: #3d4e41;
-    transform: scale(1.02);
-}
-
-.support-btn svg {
-    width: 20px;
-    height: 20px;
-}
 
 @media (max-width: 768px) {
     .social-reactions {
-        flex-wrap: wrap;
-        gap: 12px;
+        flex-wrap: nowrap;
+        gap: 4px;
         padding: 12px 0;
+        justify-content: center;
     }
 
     .social-reactions__left {
-        flex-wrap: wrap;
+        flex-wrap: nowrap;
+        gap: 2px;
     }
 
     .reaction-btn {
-        padding: 6px 10px;
+        padding: 6px 8px;
+        gap: 4px;
     }
 
-    .support-btn {
-        padding: 8px 16px;
+    .reaction-btn svg {
+        width: 20px;
+        height: 20px;
+    }
+
+    .reaction-btn__count {
         font-size: 13px;
     }
 
-    .share-dropdown {
-        left: auto;
-        right: 0;
+    .reaction-btn--share .share-dropdown {
+        left: auto !important;
+        right: 0 !important;
+        max-width: calc(100vw - 40px) !important;
+        width: 220px;
     }
 }

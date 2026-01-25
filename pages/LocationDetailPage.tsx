@@ -5,6 +5,8 @@ import type { IPageData } from '../types';
 import type { ViewState } from '../App';
 import PageNavigator from '../components/PageNavigator';
 import BookingActions from '../components/BookingActions';
+import SocialReactions from '../components/SocialReactions';
+import '../components/SocialReactions.css';
 
 interface LocationDetailPageProps {
   locationId: string;
@@ -180,6 +182,13 @@ const LocationDetailPage: React.FC<LocationDetailPageProps> = ({ locationId, set
         ref={contentRef}
         className="content-container wp-content prose max-w-none text-[#2C3531]"
         dangerouslySetInnerHTML={{ __html: rawHtml }}
+      />
+      <SocialReactions
+        postId={String(page?.wp_id || locationId)}
+        postUrl={`https://04travel.ru/lokatsii/${locationId}`}
+        postTitle={page?.title || 'Локация на Алтае'}
+        commentsCount={0}
+        supportUrl="#support"
       />
       <BookingActions />
     </div>
