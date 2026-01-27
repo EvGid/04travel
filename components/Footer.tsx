@@ -44,7 +44,7 @@ const Footer: React.FC<FooterProps> = ({ setView }) => {
               <li><button onClick={() => handleNav('domiki')} className="hover:text-white transition-colors text-left">Забронировать дом</button></li>
               <li><button onClick={() => handleNav('home', undefined, 'vibe-selector')} className="hover:text-white transition-colors text-left">Подобрать вайб</button></li>
               <li><a href="https://wp.04travel.ru" className="hover:text-white transition-colors">Блог</a></li>
-              <li><button onClick={() => handleNav('postDetail', '%d0%be-%d0%bd%d0%b0%d1%81')} className="hover:text-white transition-colors text-left">О нас</button></li>
+              <li><button onClick={() => handleNav('postDetail', 'o-nas')} className="hover:text-white transition-colors text-left">О нас</button></li>
             </ul>
           </div>
 
