@@ -68,7 +68,7 @@
                         </li>
                         <!-- Dzen -->
                         <li>
-                            <a href="https://dzen.ru/04_travel" target="_blank" rel="noopener noreferrer" title="Дзен" class="footer-social-link footer-social-link-dzen">
+                            <a href="https://dzen.ru/04travel" target="_blank" rel="noopener noreferrer" title="Дзен" class="footer-social-link footer-social-link-dzen">
                                 <svg width="169" height="169" viewBox="0 0 169 169" fill="none" xmlns="http://www.w3.org/2000/svg" class="oasis-social__icon oasis-social__icon--dzen">
   <g clip-path="url(#clip0_45_484)">
     <path d="M84.0337 168.01H84.7036C118.068 168.01 137.434 164.651 151.152 151.333C165.139 137.206 168.369 117.709 168.369 84.4749V83.5351C168.369 50.311 165.139 30.9445 151.152 16.677C137.444 3.3594 117.938 0 84.7136 0H84.0437C50.6797 0 31.3031 3.3594 17.5856 16.677C3.59808 30.8045 0.368652 50.311 0.368652 83.5351V84.4749C0.368652 117.699 3.59808 137.066 17.5856 151.333C31.1732 164.651 50.6797 168.01 84.0337 168.01Z" fill="#202022"/>
