@@ -103,7 +103,7 @@
 }
 
 /* === OASIS SOCIAL ICONS - UNIFIED TILES WITH BRAND COLORS === */
-.oasis-social__link {
+.oasis-footer .oasis-social__link {
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
@@ -117,32 +117,62 @@
     opacity: 0.9;
 }
 
+/* Specific styles for Mobile Menu to prevent wrapping and ensure color */
+.mobile-menu-container .oasis-social__link {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 32px !important;
+    /* Smaller size for mobile */
+    height: 32px !important;
+    border-radius: 10px !important;
+    transition: all 0.3s ease !important;
+    overflow: hidden !important;
+    text-decoration: none !important;
+    filter: none !important;
+    /* Always colored */
+    opacity: 1 !important;
+}
+
+/* Fix container gap and wrap for mobile menu */
+.mobile-menu-container .footer-social-icons {
+    gap: 6px !important;
+    flex-wrap: nowrap !important;
+    justify-content: center !important;
+}
+
 /* Brand Backgrounds on Containers */
-.oasis-social__link--vk {
+.oasis-footer .oasis-social__link--vk,
+.mobile-menu-container .oasis-social__link--vk {
     background-color: #0077FF !important;
 }
 
-.oasis-social__link--ok {
+.oasis-footer .oasis-social__link--ok,
+.mobile-menu-container .oasis-social__link--ok {
     background-color: #FF7700 !important;
 }
 
-.oasis-social__link--rutube {
+.oasis-footer .oasis-social__link--rutube,
+.mobile-menu-container .oasis-social__link--rutube {
     background-color: #ED143B !important;
 }
 
-.oasis-social__link--telegram {
+.oasis-footer .oasis-social__link--telegram,
+.mobile-menu-container .oasis-social__link--telegram {
     background-color: #26A5E4 !important;
 }
 
-.oasis-social__link--dzen {
+.oasis-footer .oasis-social__link--dzen,
+.mobile-menu-container .oasis-social__link--dzen {
     background-color: #202022 !important;
 }
 
-.oasis-social__link--max {
+.oasis-footer .oasis-social__link--max,
+.mobile-menu-container .oasis-social__link--max {
     background: linear-gradient(135deg, #44ccff 0%, #5533ee 66.2%, #9933dd 100%) !important;
 }
 
-.oasis-social__icon {
+.oasis-footer .oasis-social__icon {
     width: 32px !important;
     height: 32px !important;
     display: block !important;
@@ -150,31 +180,56 @@
     pointer-events: none;
 }
 
+.mobile-menu-container .oasis-social__icon {
+    width: 24px !important;
+    /* Smaller icon inside tile */
+    height: 24px !important;
+    display: block !important;
+    pointer-events: none;
+}
+
 /* Hiding internal backgrounds of SVGs to let container background show through */
-.oasis-social__icon--vk rect[fill="#0077FF"],
-.oasis-social__icon--ok rect[fill="#FF7700"],
-.oasis-social__icon--rutube rect[fill="#100943"],
-.oasis-social__icon--telegram rect[fill="#26A5E4"],
-.oasis-social__icon--dzen path[fill="#202022"],
-.oasis-social__icon--max rect[fill^="url(#max_c)"],
-.oasis-social__icon--max rect[fill^="url(#max_d)"] {
+.oasis-footer .oasis-social__icon--vk rect[fill="#0077FF"],
+.mobile-menu-container .oasis-social__icon--vk rect[fill="#0077FF"],
+.oasis-footer .oasis-social__icon--ok rect[fill="#FF7700"],
+.mobile-menu-container .oasis-social__icon--ok rect[fill="#FF7700"],
+.oasis-footer .oasis-social__icon--rutube rect[fill="#100943"],
+.mobile-menu-container .oasis-social__icon--rutube rect[fill="#100943"],
+.oasis-footer .oasis-social__icon--telegram rect[fill="#26A5E4"],
+.mobile-menu-container .oasis-social__icon--telegram rect[fill="#26A5E4"],
+.oasis-footer .oasis-social__icon--dzen path[fill="#202022"],
+.mobile-menu-container .oasis-social__icon--dzen path[fill="#202022"],
+.oasis-footer .oasis-social__icon--max rect[fill^="url(#max_c)"],
+.mobile-menu-container .oasis-social__icon--max rect[fill^="url(#max_c)"],
+.oasis-footer .oasis-social__icon--max rect[fill^="url(#max_d)"],
+.mobile-menu-container .oasis-social__icon--max rect[fill^="url(#max_d)"] {
     display: none !important;
 }
 
 /* Hover effects */
-.oasis-social__link:hover {
+.oasis-footer .oasis-social__link:hover {
     transform: translateY(-2px);
     filter: grayscale(0);
     opacity: 1;
 }
 
 /* Specific sizing tweaks for better visual balance */
-.oasis-social__icon--dzen {
+.oasis-footer .oasis-social__icon--dzen {
     width: 60px !important;
     height: 60px !important;
 }
 
-.oasis-social__icon--max {
+.oasis-footer .oasis-social__icon--max {
     width: 36px !important;
     height: 36px !important;
+}
+
+.mobile-menu-container .oasis-social__icon--dzen {
+    width: 48px !important;
+    height: 48px !important;
+}
+
+.mobile-menu-container .oasis-social__icon--max {
+    width: 28px !important;
+    height: 28px !important;
 }

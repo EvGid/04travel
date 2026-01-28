@@ -90,7 +90,7 @@ const Layout: React.FC<LayoutProps> = ({ children, view, setView }) => {
 
       {isMenuOpen && (
         <div className="fixed inset-0 z-40 bg-black/20 backdrop-blur-sm lg:hidden" onClick={() => setIsMenuOpen(false)}>
-          <div className="fixed top-24 left-4 right-4 bg-white/80 backdrop-blur-xl p-6 rounded-3xl shadow-2xl" onClick={(e) => e.stopPropagation()}>
+          <div className="mobile-menu-container fixed top-24 left-4 right-4 bg-white/80 backdrop-blur-xl p-6 rounded-3xl shadow-2xl" onClick={(e) => e.stopPropagation()}>
             <nav className="flex flex-col gap-6 text-center">
               {navigation.map((item) => (
                 item.href ? (

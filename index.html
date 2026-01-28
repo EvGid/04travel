@@ -28,6 +28,12 @@
             -moz-osx-font-smoothing: grayscale;
         }
 
+        /* Safety styles for icons outside of footer (e.g. header) */
+        .oasis-social__icon {
+            width: 24px;
+            height: 24px;
+        }
+
         .font-archival,
         .font-expressive {
             font-family: 'Manrope', sans-serif;
@@ -246,6 +252,57 @@
 
 <body>
     <div id="root"></div>
+    <script>
+        (function () {
+            const injectFooterSearch = () => {
+                // Ищем футер основного сайта по разным признакам
+                const footer = document.querySelector('footer') ||
+                    document.querySelector('.footer') ||
+                    document.querySelector('[class*="footer"]') ||
+                    document.querySelector('#root > div > div:last-child'); // Последний блок в React-корне
+
+                if (footer && !document.querySelector('.app-footer-search')) {
+                    console.log('04travel: Footer found, injecting search...');
+                    const searchHTML = `
+                <div class="app-footer-search" style="width: 100%; max-width: 400px; margin: 15px auto; padding: 0 15px; font-family: 'Manrope', sans-serif; text-align: center;">
+                    <form role="search" method="get" action="https://wp.04travel.ru/" style="position: relative; display: flex; align-items: center; background: #fff; border-radius: 99px; padding: 4px 4px 4px 16px; border: 1px solid rgba(0,0,0,0.1); box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+                        <input type="search" placeholder="Поиск по турам и блогу..." name="s" style="width: 100%; background: transparent; border: none; padding: 8px 0; font-size: 15px; color: #333; outline: none;">
+                        <button type="submit" style="background: #4A5D4E; color: white; border: none; border-radius: 50%; width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; cursor: pointer; flex-shrink: 0; margin-left: 8px;">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                        </button>
+                    </form>
+                </div>`;
+
+                    // Ищем копирайт (лежит глубоко в DOM, ищем листовой элемент с текстом)
+                    const copyright = Array.from(footer.querySelectorAll('*')).find(el =>
+                        el.children.length === 0 &&
+                        (el.textContent.includes('©') || el.textContent.includes('Все права защищены'))
+                    );
+
+                    const div = document.createElement('div');
+                    div.innerHTML = searchHTML;
+
+                    if (copyright) {
+                        try {
+                            copyright.parentElement.insertBefore(div, copyright);
+                        } catch (e) {
+                            footer.appendChild(div);
+                        }
+                    } else {
+                        footer.appendChild(div);
+                    }
+                }
+            };
+
+            // Запускаем проверку
+            let attempts = 0;
+            const interval = setInterval(() => {
+                injectFooterSearch();
+                attempts++;
+                if (attempts > 30) clearInterval(interval);
+            }, 1000);
+        })();
+    </script>
     <script type="module" src="./index.tsx"></script>
     <script type="module" src="/index.tsx"></script>
 </body>
