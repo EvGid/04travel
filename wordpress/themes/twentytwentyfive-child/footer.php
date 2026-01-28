@@ -47,7 +47,7 @@
                         </li>
                         <!-- Rutube -->
                         <li>
-                            <a href="https://rutube.ru/channel/25298457/" target="_blank" rel="noopener noreferrer" title="RuTube" class="footer-social-link">
+                            <a href="https://rutube.ru/channel/74919456/" target="_blank" rel="noopener noreferrer" title="RuTube" class="footer-social-link">
                                 <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <g>
                                         <rect width="40" height="40" rx="12" fill="#100943"/>

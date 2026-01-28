@@ -66,7 +66,7 @@ const SocialLinks: React.FC = () => {
       </li>
       {/* Rutube */}
       <li>
-        <a href="https://rutube.ru/channel/25298457/" target="_blank" rel="noopener noreferrer"
+        <a href="https://rutube.ru/channel/74919456/" target="_blank" rel="noopener noreferrer"
           title="RuTube" className="footer-social-link oasis-social__link oasis-social__link--rutube">
           <svg width="40" height="40" viewBox="0 0 40 40" fill="none"
             xmlns="http://www.w3.org/2000/svg"
