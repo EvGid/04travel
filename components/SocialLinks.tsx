@@ -51,7 +51,7 @@ const SocialLinks: React.FC = () => {
       </li>
       {/* OK */}
       <li>
-        <a href="https://ok.ru/group/70000004518598" target="_blank" rel="noopener noreferrer"
+        <a href="https://ok.ru/group/70000044853640" target="_blank" rel="noopener noreferrer"
           title="Одноклассники"
           className="footer-social-link oasis-social__link oasis-social__link--ok">
           <svg width="40" height="40" viewBox="0 0 40 40" fill="none"
