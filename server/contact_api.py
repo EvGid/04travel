@@ -37,7 +37,15 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 
 # Configure logging
-logging.basicConfig(level=logging.INFO)
+LOG_FILE = os.path.join(os.path.dirname(__file__), "contact_api.log")
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+    handlers=[
+        logging.FileHandler(LOG_FILE),
+        logging.StreamHandler()
+    ]
+)
 logger = logging.getLogger(__name__)
 
 router = APIRouter()
@@ -115,10 +123,16 @@ def send_email_notification(subject: str, body: str) -> bool:
         msg["Subject"] = subject
         msg.attach(MIMEText(body, "html", "utf-8"))
         
-        with smtplib.SMTP(SMTP_HOST, SMTP_PORT) as server:
-            server.starttls()
-            server.login(SMTP_USER, SMTP_PASS)
-            server.send_message(msg)
+        # Use SMTP_SSL for port 465
+        if SMTP_PORT == 465:
+            with smtplib.SMTP_SSL(SMTP_HOST, SMTP_PORT) as server:
+                server.login(SMTP_USER, SMTP_PASS)
+                server.send_message(msg)
+        else:
+            with smtplib.SMTP(SMTP_HOST, SMTP_PORT) as server:
+                server.starttls()
+                server.login(SMTP_USER, SMTP_PASS)
+                server.send_message(msg)
         
         logger.info("Email notification sent successfully")
         return True
