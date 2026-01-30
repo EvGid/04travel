@@ -210,6 +210,13 @@ const App: React.FC = () => {
     if (!view.hash) {
       window.scrollTo(0, 0);
     }
+
+    // Track page view in Yandex.Metrika (SPA hit)
+    const ymId = 106054213;
+    if (typeof (window as any).ym === 'function') {
+      const path = resolvePathFromView(view);
+      (window as any).ym(ymId, 'hit', path);
+    }
   }, [view.page, view.params]);
 
   const renderContent = () => {
