@@ -1,16 +1,28 @@
 import React, { useState } from 'react';
 import { REGIONAL_PRICES } from '../ui-constants.ts';
 import type { PricingRegion } from '../types';
+import type { ViewState } from '../App.tsx';
 
-const PricingSection: React.FC = () => {
+interface PricingSectionProps {
+  setView?: (view: ViewState) => void;
+}
+
+const PricingSection: React.FC<PricingSectionProps> = ({ setView }) => {
   const [activeTab, setActiveTab] = useState(REGIONAL_PRICES[0]?.id);
   const [groupSize, setGroupSize] = useState(4);
+  const [phone, setPhone] = useState('');
 
   const activeRegion = REGIONAL_PRICES.find(r => r.id === activeTab);
 
   const calculatePrice = (minPrice: number, perPerson: number) => {
     if (groupSize >= 4) return perPerson * groupSize;
     return minPrice; // Если меньше 4, платится минималка за машину
+  };
+
+  const handleBooking = () => {
+    if (setView) {
+      setView({ page: 'contact', params: { phone } });
+    }
   };
 
   return (
@@ -110,8 +122,17 @@ const PricingSection: React.FC = () => {
               Выбрали маршрут? Забронируйте машину сейчас, чтобы гарантировать лучшую дату в сезоне 2026.
             </p>
             <div className="space-y-4 relative z-10">
-              <input type="text" placeholder="Ваш телефон" className="w-full bg-white/10 border border-white/20 rounded-full px-6 py-4 outline-none focus:bg-white/20 transition-all" />
-              <button className="w-full py-5 bg-[#A68B67] text-white rounded-full font-bold hover:shadow-[0_0_30px_rgba(166,139,103,0.4)] transition-all">
+              <input
+                type="text"
+                placeholder="Ваш телефон"
+                className="w-full bg-white/10 border border-white/20 rounded-full px-6 py-4 outline-none focus:bg-white/20 transition-all"
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
+              />
+              <button
+                onClick={handleBooking}
+                className="w-full py-5 bg-[#A68B67] text-white rounded-full font-bold hover:shadow-[0_0_30px_rgba(166,139,103,0.4)] transition-all"
+              >
                 Оставить заявку
               </button>
             </div>

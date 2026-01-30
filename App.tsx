@@ -21,11 +21,18 @@ export interface ViewState {
 }
 
 const resolveViewFromPath = (path: string): ViewState => {
-  let slug = path.startsWith('/') ? path.substring(1) : path;
+  const url = new URL(path, window.location.origin);
+  let slug = url.pathname.startsWith('/') ? url.pathname.substring(1) : url.pathname;
   slug = slug.endsWith('/') ? slug.slice(0, -1) : slug;
 
+  const params: { [key: string]: string } = {};
+  const searchParams = new URLSearchParams(window.location.search);
+  searchParams.forEach((value, key) => {
+    params[key] = value;
+  });
+
   if (slug === '') {
-    return { page: 'home' };
+    return { page: 'home', params };
   }
 
   const staticPages: { [key: string]: string } = {
@@ -38,7 +45,7 @@ const resolveViewFromPath = (path: string): ViewState => {
   };
 
   if (staticPages[slug]) {
-    return { page: staticPages[slug] };
+    return { page: staticPages[slug], params };
   }
 
   try {
@@ -46,45 +53,69 @@ const resolveViewFromPath = (path: string): ViewState => {
     const canonicalSlug = SLUG_ALIASES[decodedSlug] || decodedSlug;
 
     if (TOUR_SLUGS_SET.has(canonicalSlug)) {
-      return { page: 'tourDetail', params: { tourId: encodeURIComponent(canonicalSlug) } };
+      return { page: 'tourDetail', params: { ...params, tourId: encodeURIComponent(canonicalSlug) } };
     }
     if (LOCATION_SLUGS_SET.has(canonicalSlug)) {
-      return { page: 'locationDetail', params: { locationId: encodeURIComponent(canonicalSlug) } };
+      return { page: 'locationDetail', params: { ...params, locationId: encodeURIComponent(canonicalSlug) } };
     }
     if (EXCURSION_SLUGS_SET.has(canonicalSlug)) {
-      return { page: 'excursionDetail', params: { excursionId: encodeURIComponent(canonicalSlug) } };
+      return { page: 'excursionDetail', params: { ...params, excursionId: encodeURIComponent(canonicalSlug) } };
     }
 
-    return { page: 'postDetail', params: { postId: canonicalSlug } };
+    return { page: 'postDetail', params: { ...params, postId: canonicalSlug } };
 
   } catch (e) {
     console.warn("Could not resolve path:", path, e);
-    return { page: '404' };
+    return { page: '404', params };
   }
 };
 
 const resolvePathFromView = (view: ViewState): string => {
+  let path = '';
   switch (view.page) {
     case 'home':
-      return '/';
+      path = '/';
+      break;
     case 'tury':
     case 'ekskursii':
     case 'lokatsii':
     case 'blog':
     case 'domiki':
     case 'contact':
-      return `/${view.page}`;
+      path = `/${view.page}`;
+      break;
     case 'tourDetail':
-      return `/${view.params?.tourId || ''}`;
+      path = `/${view.params?.tourId || ''}`;
+      break;
     case 'locationDetail':
-      return `/${view.params?.locationId || ''}`;
+      path = `/${view.params?.locationId || ''}`;
+      break;
     case 'excursionDetail':
-      return `/${view.params?.excursionId || ''}`;
+      path = `/${view.params?.excursionId || ''}`;
+      break;
     case 'postDetail':
-      return `/${view.params?.postId || ''}`;
+      path = `/${view.params?.postId || ''}`;
+      break;
     default:
-      return '/404';
+      path = '/404';
   }
+
+  // Append query params if they exist
+  if (view.params) {
+    const internalParams = ['tourId', 'locationId', 'excursionId', 'postId'];
+    const queryParams = new URLSearchParams();
+    Object.entries(view.params).forEach(([key, value]) => {
+      if (!internalParams.includes(key)) {
+        queryParams.append(key, value);
+      }
+    });
+    const queryString = queryParams.toString();
+    if (queryString) {
+      path += (path.includes('?') ? '&' : '?') + queryString;
+    }
+  }
+
+  return path;
 };
 
 const App: React.FC = () => {
@@ -212,7 +243,7 @@ const App: React.FC = () => {
       case 'domiki':
         return <BookingPage />;
       case 'contact':
-        return <ContactPage setView={navigate} />;
+        return <ContactPage params={view.params} setView={navigate} />;
       default:
         return <NotFoundPage setView={navigate} />;
     }

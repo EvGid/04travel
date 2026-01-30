@@ -44,7 +44,7 @@ const HomePage: React.FC<HomePageProps> = ({ setView }) => {
       </div>
 
       <div id="pricing">
-        <PricingSection />
+        <PricingSection setView={setView} />
       </div>
 
       <div id="vibe-selector">

@@ -4,9 +4,10 @@ import type { ViewState } from '../App';
 
 interface ContactPageProps {
     setView: React.Dispatch<React.SetStateAction<ViewState>>;
+    params?: { [key: string]: string };
 }
 
-const ContactPage: React.FC<ContactPageProps> = ({ setView }) => {
+const ContactPage: React.FC<ContactPageProps> = ({ setView, params }) => {
     return (
         <div className="min-h-screen bg-[#F5F1E9]/30">
             {/* Hero Section */}
@@ -25,7 +26,7 @@ const ContactPage: React.FC<ContactPageProps> = ({ setView }) => {
 
                 {/* Form Card */}
                 <div className="bg-white rounded-[2rem] shadow-xl p-8 md:p-12 border border-gray-100">
-                    <ContactForm setView={setView} variant="full" />
+                    <ContactForm setView={setView} variant="full" initialPhone={params?.phone} />
                 </div>
 
                 {/* Alternative Contact */}

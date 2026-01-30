@@ -27,7 +27,7 @@ const Hero: React.FC<HeroProps> = ({ setView }) => {
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
           <button
-            onClick={() => setView({ page: 'domiki' })}
+            onClick={() => setView({ page: 'contact' })}
             className="px-8 py-4 bg-[#A68B67] text-white rounded-full font-medium tracking-wide hover:bg-[#8e7656] transition-all transform hover:-translate-y-1 shadow-xl"
           >
             Забронировать приключение

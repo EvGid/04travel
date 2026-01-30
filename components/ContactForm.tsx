@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import type { ViewState } from '../App';
 
 interface ContactFormProps {
     setView?: React.Dispatch<React.SetStateAction<ViewState>>;
     variant?: 'full' | 'compact';
+    initialPhone?: string;
 }
 
 interface FormData {
@@ -17,10 +18,10 @@ interface FormData {
 
 type FormStatus = 'idle' | 'submitting' | 'success' | 'error';
 
-const ContactForm: React.FC<ContactFormProps> = ({ setView, variant = 'full' }) => {
+const ContactForm: React.FC<ContactFormProps> = ({ setView, variant = 'full', initialPhone = '' }) => {
     const [formData, setFormData] = useState<FormData>({
         name: '',
-        phone: '',
+        phone: initialPhone,
         telegram: '',
         interest: 'tour',
         dates: '',
@@ -28,6 +29,12 @@ const ContactForm: React.FC<ContactFormProps> = ({ setView, variant = 'full' }) 
     });
     const [status, setStatus] = useState<FormStatus>('idle');
     const [errorMessage, setErrorMessage] = useState('');
+
+    useEffect(() => {
+        if (initialPhone) {
+            setFormData(prev => ({ ...prev, phone: initialPhone }));
+        }
+    }, [initialPhone]);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const { name, value } = e.target;
@@ -157,8 +164,8 @@ const ContactForm: React.FC<ContactFormProps> = ({ setView, variant = 'full' }) 
                         type="button"
                         onClick={() => handleInterestChange('tour')}
                         className={`flex-1 py-4 px-6 rounded-2xl font-semibold transition-all ${formData.interest === 'tour'
-                                ? 'bg-[#4A5D4E] text-white shadow-lg'
-                                : 'bg-gray-100 text-[#2C3531] hover:bg-gray-200'
+                            ? 'bg-[#4A5D4E] text-white shadow-lg'
+                            : 'bg-gray-100 text-[#2C3531] hover:bg-gray-200'
                             }`}
                     >
                         🏔️ Тур
@@ -167,8 +174,8 @@ const ContactForm: React.FC<ContactFormProps> = ({ setView, variant = 'full' }) 
                         type="button"
                         onClick={() => handleInterestChange('cabin')}
                         className={`flex-1 py-4 px-6 rounded-2xl font-semibold transition-all ${formData.interest === 'cabin'
-                                ? 'bg-[#4A5D4E] text-white shadow-lg'
-                                : 'bg-gray-100 text-[#2C3531] hover:bg-gray-200'
+                            ? 'bg-[#4A5D4E] text-white shadow-lg'
+                            : 'bg-gray-100 text-[#2C3531] hover:bg-gray-200'
                             }`}
                     >
                         🏡 Домик
