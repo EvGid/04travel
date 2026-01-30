@@ -91,7 +91,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ setView, variant = 'full', in
                 <h3 className="text-2xl font-bold text-[#2C3531] mb-3">Спасибо!</h3>
                 <p className="text-[#2C3531]/60 mb-8">Обычно отвечаю в течение 10-30 минут</p>
                 <a
-                    href="https://t.me/your_telegram_username"
+                    href="https://t.me/travel_ra"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-3 px-8 py-4 bg-[#0088cc] text-white rounded-full font-semibold hover:bg-[#0077b5] transition-colors"

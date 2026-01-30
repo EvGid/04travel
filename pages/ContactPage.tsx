@@ -43,7 +43,7 @@ const ContactPage: React.FC<ContactPageProps> = ({ setView, params }) => {
                             +7 963 510-67-46
                         </a>
                         <a
-                            href="https://t.me/your_telegram_username"
+                            href="https://t.me/travel_ra"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="flex items-center gap-2 text-[#2C3531] hover:text-[#0088cc] transition-colors"
