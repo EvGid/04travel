@@ -15,6 +15,7 @@ PRODUCTION:
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from contact_api import router as contact_router
+from chat_api import router as chat_router
 
 app = FastAPI(
     title="04travel API",
@@ -36,8 +37,9 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Include contact form router
+# Include routers
 app.include_router(contact_router, prefix="/api")
+app.include_router(chat_router, prefix="/api")
 
 
 @app.get("/health")

@@ -38,15 +38,16 @@ from email.mime.multipart import MIMEMultipart
 
 # Configure logging
 LOG_FILE = os.path.join(os.path.dirname(__file__), "contact_api.log")
-logging.basicConfig(
-    level=logging.INFO,
-    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
-    handlers=[
-        logging.FileHandler(LOG_FILE),
-        logging.StreamHandler()
-    ]
-)
-logger = logging.getLogger(__name__)
+logger = logging.getLogger("contact_api")
+logger.setLevel(logging.INFO)
+# Clear existing handlers
+if logger.handlers:
+    logger.handlers.clear()
+    
+file_handler = logging.FileHandler(LOG_FILE)
+file_handler.setFormatter(logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s'))
+logger.addHandler(file_handler)
+logger.addHandler(logging.StreamHandler()) # Also print to console/systemd
 
 router = APIRouter()
 
@@ -55,6 +56,7 @@ router = APIRouter()
 
 TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN", "")
 TELEGRAM_CHAT_ID = os.getenv("TELEGRAM_CHAT_ID", "")
+CONTACT_THREAD_ID = os.getenv("CONTACT_THREAD_ID", "")
 
 SMTP_HOST = os.getenv("SMTP_HOST", "smtp.beget.com")
 SMTP_PORT = int(os.getenv("SMTP_PORT", "587"))
@@ -93,6 +95,9 @@ async def send_telegram_message(text: str) -> bool:
         "text": text,
         "parse_mode": "HTML",
     }
+    
+    if CONTACT_THREAD_ID:
+        payload["message_thread_id"] = int(CONTACT_THREAD_ID)
     
     try:
         async with httpx.AsyncClient(timeout=10.0) as client:

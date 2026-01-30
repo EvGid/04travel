@@ -13,6 +13,7 @@ const ChatbudAssistant: React.FC<ChatbudAssistantProps> = ({ setView }) => {
   ]);
   const [input, setInput] = useState('');
   const [isTyping, setIsTyping] = useState(false);
+  const [sessionId] = useState(() => Math.random().toString(36).substring(2, 11));
   const scrollRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -20,6 +21,26 @@ const ChatbudAssistant: React.FC<ChatbudAssistantProps> = ({ setView }) => {
       scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
     }
   }, [messages]);
+
+  useEffect(() => {
+    // SSE to receive replies from Telegram
+    const eventSource = new EventSource(`${window.location.origin}/api/chat/stream/${sessionId}`);
+
+    eventSource.onmessage = (event) => {
+      try {
+        const data = JSON.parse(event.data);
+        if (data.role === 'bot' && data.text) {
+          setMessages(prev => [...prev, { role: 'bot', text: data.text }]);
+        }
+      } catch (e) {
+        console.error('Error parsing SSE message:', e);
+      }
+    };
+
+    return () => {
+      eventSource.close();
+    };
+  }, [sessionId]);
 
   const handleSend = async () => {
     if (!input.trim()) return;
@@ -29,6 +50,18 @@ const ChatbudAssistant: React.FC<ChatbudAssistantProps> = ({ setView }) => {
     setInput('');
     setIsTyping(true);
 
+    // 1. Send to Telegram via our backend
+    fetch('/api/chat/send', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        session_id: sessionId,
+        text: userMsg,
+        user_name: 'Пользователь сайта'
+      })
+    }).catch(err => console.error('Failed to sync chat to TG:', err));
+
+    // 2. Get AI recommendation as before
     const botReply = await getTourRecommendation(userMsg);
     setIsTyping(false);
     setMessages(prev => [...prev, { role: 'bot', text: botReply || 'Извините, я задумался о вечном.' }]);
