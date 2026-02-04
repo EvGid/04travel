@@ -7,19 +7,19 @@ interface HeroProps {
 
 const Hero: React.FC<HeroProps> = ({ setView }) => {
   return (
-    <section className="relative h-[85vh] w-full overflow-hidden flex items-center justify-center">
+    <section className="relative h-screen w-full overflow-hidden flex items-center justify-center">
       {/* Immersive Video Overlay Placeholder */}
-      <div className="absolute inset-0 z-0 bg-black/20">
+      <div className="absolute inset-0 z-0 bg-black/40">
         <img
-          src="https://images.unsplash.com/photo-1541336032412-2048a678540d?auto=format&fit=crop&q=80&w=2574"
-          alt="Altai Nature"
-          className="w-full h-full object-cover scale-105 transition-transform duration-[10s] hover:scale-100"
+          src="/images/chuyskiy-trakt-doroga-altay11.webp"
+          alt="Чуйский тракт"
+          className="w-full h-full object-cover object-[center_60%] transition-transform duration-[10s] hover:scale-105"
         />
       </div>
 
       <div className="relative z-10 text-center px-4 max-w-5xl">
-        <h1 className="text-white font-expressive text-4xl md:text-7xl mb-6 drop-shadow-lg leading-tight">
-          Алтай: <br /> Глубина и Пауза
+        <h1 className="text-white font-expressive text-4xl md:text-7xl mb-6 drop-shadow-lg leading-tight uppercase tracking-tight">
+          Туры по Алтаю 2026 <br /> Авторские путешествия
         </h1>
         <p className="text-white/90 text-lg md:text-2xl font-archival font-light mb-10 max-w-2xl mx-auto drop-shadow-md">
           Откройте Республику Алтай через философию осознанных путешествий и цифровой комфорт 2026 года.

@@ -75,7 +75,7 @@ const BentoTours: React.FC<BentoToursProps> = ({ setView }) => {
         <div onClick={() => setView({ page: 'tourDetail', params: { tourId: tour3.slug! } })} className="md:col-span-4 relative group overflow-hidden rounded-3xl shadow-lg bg-white cursor-pointer">
           <img
             src={tour3.image}
-            className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+            className={`absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 ${tour3.image.includes('teleckoe-ozero-artybash-altay12.webp') ? 'rotate-90 scale-[1.8]' : ''}`}
             alt={tour3.title}
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent p-8 flex flex-col justify-end group-hover:bg-black/50 transition-all">

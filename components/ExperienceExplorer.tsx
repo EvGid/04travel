@@ -1,9 +1,30 @@
 import React, { useState } from 'react';
 import { EXPERIENCES } from '../ui-constants.ts';
+import type { ViewState } from '../App';
 
-const ExperienceExplorer: React.FC = () => {
+interface ExperienceExplorerProps {
+  setView: React.Dispatch<React.SetStateAction<ViewState>>;
+}
+
+const ExperienceExplorer: React.FC<ExperienceExplorerProps> = ({ setView }) => {
   // Защита: если EXPERIENCES пуст или undefined, используем null, чтобы не упасть при инициализации useState
   const [activeLoc, setActiveLoc] = useState(EXPERIENCES && EXPERIENCES.length > 0 ? EXPERIENCES[0] : null);
+
+  const handleMediaClick = (link?: string) => {
+    if (!link) return;
+
+    // Simple routing logic based on link prefix
+    if (link.startsWith('/location/')) {
+      const slug = link.replace('/location/', '');
+      setView({ page: 'locationDetail', params: { locationId: slug } });
+    } else if (link.startsWith('/tours/')) {
+      const slug = link.replace('/tours/', '');
+      setView({ page: 'tourDetail', params: { tourId: slug } });
+    } else {
+      // Fallback or external link? For now assume internal
+      console.warn('Unknown link format:', link);
+    }
+  };
 
   // Если данных нет, не рендерим секцию или показываем заглушку
   if (!activeLoc) {
@@ -41,6 +62,7 @@ const ExperienceExplorer: React.FC = () => {
                 {activeLoc.media && activeLoc.media.map((item, idx) => (
                   <div
                     key={idx}
+                    onClick={() => handleMediaClick(item.link)}
                     className={`relative rounded-[2rem] overflow-hidden bg-gray-100 group cursor-pointer ${idx === 0 ? 'col-span-2 row-span-2' : ''
                       }`}
                   >

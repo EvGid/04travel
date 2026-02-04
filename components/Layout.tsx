@@ -13,6 +13,17 @@ const navigation = [
   { name: 'Локации', key: 'lokatsii' },
   { name: 'Блог', key: 'blog', href: 'https://wp.04travel.ru' },
   { name: 'Домики', key: 'domiki' },
+  {
+    name: 'Новости',
+    key: 'novosti',
+    href: 'https://wp.04travel.ru/category/novosti/',
+    submenu: [
+      { name: 'Республика Алтай', href: 'https://wp.04travel.ru/category/novosti/altay/' },
+      { name: 'Россия', href: 'https://wp.04travel.ru/category/novosti/russia/' },
+      { name: 'Туризм', href: 'https://wp.04travel.ru/category/novosti/tourism/' },
+      { name: 'События', href: 'https://wp.04travel.ru/category/novosti/events/' },
+    ]
+  },
 ];
 
 interface LayoutProps {
@@ -51,23 +62,39 @@ const Layout: React.FC<LayoutProps> = ({ children, view, setView }) => {
 
           <div className="hidden lg:flex gap-8 text-sm font-medium text-[#2C3531]/80">
             {navigation.map((item) => (
-              item.href ? (
-                <a
-                  key={item.name}
-                  href={item.href}
-                  className="transition-colors hover:text-[#A68B67]"
-                >
-                  {item.name}
-                </a>
-              ) : (
-                <button
-                  key={item.name}
-                  onClick={() => handleNavClick(item.key)}
-                  className={`transition-colors ${view.page === item.key ? 'text-[#A68B67] font-bold' : 'hover:text-[#A68B67]'}`}
-                >
-                  {item.name}
-                </button>
-              )
+              <div key={item.name} className="relative group flex items-center h-full py-1">
+                {item.href ? (
+                  <a
+                    href={item.href}
+                    className="transition-colors hover:text-[#A68B67]"
+                  >
+                    {item.name}
+                  </a>
+                ) : (
+                  <button
+                    onClick={() => handleNavClick(item.key)}
+                    className={`transition-colors ${view.page === item.key ? 'text-[#A68B67] font-bold' : 'hover:text-[#A68B67]'}`}
+                  >
+                    {item.name}
+                  </button>
+                )}
+
+                {item.submenu && (
+                  <div className="absolute top-full left-1/2 -translate-x-1/2 pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                    <div className="bg-white rounded-2xl shadow-xl border border-black/5 py-2 min-w-[200px] backdrop-blur-xl">
+                      {item.submenu.map((sub) => (
+                        <a
+                          key={sub.name}
+                          href={sub.href}
+                          className="block px-6 py-2.5 text-sm hover:bg-[#F5F1E9] hover:text-[#A68B67] transition-colors"
+                        >
+                          {sub.name}
+                        </a>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
             ))}
           </div>
 
@@ -93,23 +120,53 @@ const Layout: React.FC<LayoutProps> = ({ children, view, setView }) => {
           <div className="mobile-menu-container fixed top-24 left-4 right-4 bg-white/80 backdrop-blur-xl p-6 rounded-3xl shadow-2xl" onClick={(e) => e.stopPropagation()}>
             <nav className="flex flex-col gap-6 text-center">
               {navigation.map((item) => (
-                item.href ? (
-                  <a
-                    key={item.name}
-                    href={item.href}
-                    className="text-lg font-bold transition-colors text-[#2C3531] hover:text-[#A68B67]"
-                  >
-                    {item.name}
-                  </a>
-                ) : (
-                  <button
-                    key={item.name}
-                    onClick={() => handleNavClick(item.key)}
-                    className={`text-lg font-bold transition-colors ${view.page === item.key ? 'text-[#A68B67]' : 'text-[#2C3531] hover:text-[#A68B67]'}`}
-                  >
-                    {item.name}
-                  </button>
-                )
+                <div key={item.name} className="flex flex-col gap-4">
+                  <div className="flex items-center justify-center gap-2">
+                    {item.href ? (
+                      <a
+                        href={item.href}
+                        className="text-lg font-bold transition-colors text-[#2C3531] hover:text-[#A68B67]"
+                      >
+                        {item.name}
+                      </a>
+                    ) : (
+                      <button
+                        onClick={() => handleNavClick(item.key)}
+                        className={`text-lg font-bold transition-colors ${view.page === item.key ? 'text-[#A68B67]' : 'text-[#2C3531] hover:text-[#A68B67]'}`}
+                      >
+                        {item.name}
+                      </button>
+                    )}
+                    {item.submenu && (
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          const target = e.currentTarget.parentElement?.nextElementSibling;
+                          if (target) target.classList.toggle('hidden');
+                          e.currentTarget.querySelector('svg')?.classList.toggle('rotate-180');
+                        }}
+                        className="p-1 hover:text-[#A68B67] transition-colors"
+                      >
+                        <svg className="w-5 h-5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                        </svg>
+                      </button>
+                    )}
+                  </div>
+                  {item.submenu && (
+                    <div className="hidden flex flex-col gap-3 pb-2">
+                      {item.submenu.map((sub) => (
+                        <a
+                          key={sub.name}
+                          href={sub.href}
+                          className="text-base font-medium text-[#2C3531]/60 hover:text-[#A68B67] transition-colors"
+                        >
+                          {sub.name}
+                        </a>
+                      ))}
+                    </div>
+                  )}
+                </div>
               ))}
               <div className="pt-6 border-t border-[#2C3531]/10 flex flex-col items-center gap-4">
                 <span className="text-[10px] font-bold uppercase tracking-widest text-[#A68B67]">Свяжитесь с нами</span>

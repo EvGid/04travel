@@ -11,7 +11,10 @@ import BookingPage from './pages/BookingPage';
 import ExcursionsHubPage from './pages/ExcursionsHubPage';
 import ExcursionDetailPage from './pages/ExcursionDetailPage';
 import NotFoundPage from './pages/NotFoundPage';
+import ChulyshmanTest from './pages/ChulyshmanTest';
+import MarsPage from './pages/MarsPage';
 import ContactPage from './pages/ContactPage';
+
 import { TOUR_SLUGS_SET, LOCATION_SLUGS_SET, EXCURSION_SLUGS_SET, SLUG_ALIASES } from './services/contentService';
 
 export interface ViewState {
@@ -42,6 +45,7 @@ const resolveViewFromPath = (path: string): ViewState => {
     'blog': 'blog',
     'domiki': 'domiki',
     'contact': 'contact',
+    'chulyshman-test': 'chulyshmanTest',
   };
 
   if (staticPages[slug]) {
@@ -51,6 +55,16 @@ const resolveViewFromPath = (path: string): ViewState => {
   try {
     const decodedSlug = decodeURIComponent(slug);
     const canonicalSlug = SLUG_ALIASES[decodedSlug] || decodedSlug;
+
+    // Explicit override for Mars page
+    if (canonicalSlug === 'алтай-марс-кызыл-чин-экскурсии-и-туры' || canonicalSlug.includes('алтай-марс')) {
+      return { page: 'marsPage', params };
+    }
+
+    // Explicit override for Chulyshman page
+    if (canonicalSlug === 'долина-чулышмана' || canonicalSlug.includes('чулышман')) {
+      return { page: 'chulyshmanPage', params };
+    }
 
     if (TOUR_SLUGS_SET.has(canonicalSlug)) {
       return { page: 'tourDetail', params: { ...params, tourId: encodeURIComponent(canonicalSlug) } };
@@ -243,6 +257,10 @@ const App: React.FC = () => {
         return <LocationsHubPage setView={navigate} />;
       case 'locationDetail':
         return view.params?.locationId ? <LocationDetailPage locationId={view.params.locationId} {...detailPageProps} /> : <NotFoundPage setView={navigate} />;
+      case 'marsPage':
+        return <MarsPage />;
+      case 'chulyshmanPage':
+        return <ChulyshmanTest />;
       case 'blog':
         return <BlogHubPage setView={navigate} />;
       case 'postDetail':
@@ -251,6 +269,8 @@ const App: React.FC = () => {
         return <BookingPage />;
       case 'contact':
         return <ContactPage params={view.params} setView={navigate} />;
+      case 'chulyshmanTest':
+        return <ChulyshmanTest />;
       default:
         return <NotFoundPage setView={navigate} />;
     }

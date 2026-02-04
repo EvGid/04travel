@@ -26,6 +26,7 @@ export interface LocationExperience {
     url: string;
     title: string;
     thumbnail?: string;
+    link?: string;
   }>;
   reviews: Review[];
   externalWidget?: {
@@ -73,6 +74,7 @@ export interface ITourDefinition {
   wp_id: string;
   title: string;
   slug: string; // Используем кириллицу для slug для единообразия
+  image?: string;
 }
 
 // Интерфейс для данных страницы из WordPress (используется в contentService)

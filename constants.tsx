@@ -56,8 +56,8 @@ export const EXPERIENCES: LocationExperience[] = [
     name: 'Улаганские перевалы',
     description: 'Дорога в долину Чулышмана сквозь облака и красные ворота.',
     media: [
-      { type: 'image', url: 'https://images.unsplash.com/photo-1472396961693-142e6e269027?auto=format&fit=crop&q=80&w=800', title: 'Кату-Ярык сверху' },
-      { type: 'video', url: '#', thumbnail: 'https://images.unsplash.com/photo-1518098268026-4e89f1a2cd8e?auto=format&fit=crop&q=80&w=800', title: 'Спуск в долину' }
+      { type: 'image', url: '/images/pereval-katu-yaryk-dolina-chulyshman-altay12.webp', title: 'Кату-Ярык сверху', link: '/location/долина-чулышмана' },
+      { type: 'video', url: '#', thumbnail: '/images/pereval-katu-yaryk-dolina-chulyshman-altay1.webp', title: 'Спуск в долину', link: '/location/долина-чулышмана' }
     ],
     reviews: REVIEWS.filter(r => r.locationId === 'ulagan')
   }
@@ -79,18 +79,18 @@ export const REGIONAL_PRICES: PricingRegion[] = [
     id: 'ulagan',
     name: 'Улаган 2026',
     items: [
-        { title: 'Перевал Кату-Ярык', pricePerPerson: 3000, minPrice: 12000, isFeatured: true },
-        { title: 'Каменные грибы', pricePerPerson: 3500, minPrice: 14000 },
-        { title: 'Водопад Учар (заброска)', pricePerPerson: 4500, minPrice: 18000 },
+      { title: 'Перевал Кату-Ярык', pricePerPerson: 3000, minPrice: 12000, isFeatured: true },
+      { title: 'Каменные грибы', pricePerPerson: 3500, minPrice: 14000 },
+      { title: 'Водопад Учар (заброска)', pricePerPerson: 4500, minPrice: 18000 },
     ],
   },
   {
     id: 'kosh-agach',
     name: 'Кош-Агач 2026',
     items: [
-        { title: 'Алтайский Марс (Кызыл-Чин)', pricePerPerson: 2500, minPrice: 10000 },
-        { title: 'Плато Укок (1 день, обзорно)', pricePerPerson: 7500, minPrice: 30000, isFeatured: true },
-        { title: 'Теплый ключ (Джумалинские источники)', pricePerPerson: 5000, minPrice: 20000 },
+      { title: 'Алтайский Марс (Кызыл-Чин)', pricePerPerson: 2500, minPrice: 10000 },
+      { title: 'Плато Укок (1 день, обзорно)', pricePerPerson: 7500, minPrice: 30000, isFeatured: true },
+      { title: 'Теплый ключ (Джумалинские источники)', pricePerPerson: 5000, minPrice: 20000 },
     ],
   },
 ];
@@ -182,10 +182,10 @@ export const LOCATIONS_PAGE_DEFINITIONS: ITourDefinition[] = [
 ];
 
 export const EXCURSIONS_PAGE_DEFINITIONS: ITourDefinition[] = [
-    { wp_id: '540', title: 'Экскурсия на Каракольские озера', slug: 'джип-тур-каракольские-озера' },
-    { wp_id: '401', title: 'Экскурсия на Алтайский Марс', slug: 'тур-марсианские-хроники' },
-    { wp_id: '410', title: 'Экскурсия на Гейзерное озеро', slug: 'гейзерное-озеро'},
-    { wp_id: '25', title: 'Джип-тур на Акташский ретранслятор', slug: 'джип-туры-на-алтай' }
+  { wp_id: '540', title: 'Экскурсия на Каракольские озера', slug: 'джип-тур-каракольские-озера' },
+  { wp_id: '401', title: 'Экскурсия на Алтайский Марс', slug: 'тур-марсианские-хроники' },
+  { wp_id: '410', title: 'Экскурсия на Гейзерное озеро', slug: 'гейзерное-озеро' },
+  { wp_id: '25', title: 'Джип-тур на Акташский ретранслятор', slug: 'джип-туры-на-алтай' }
 ];
 
 export const EXCLUDED_SLUGS_FOR_BLOG = new Set([

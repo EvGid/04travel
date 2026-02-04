@@ -55,8 +55,8 @@ export const EXPERIENCES = [
     name: 'Улаганские перевалы',
     description: 'Дорога в долину Чулышмана сквозь облака и красные ворота.',
     media: [
-      { type: 'image', url: 'https://images.unsplash.com/photo-1472396961693-142e6e269027?auto=format&fit=crop&q=80&w=800', title: 'Кату-Ярык сверху' },
-      { type: 'video', url: '#', thumbnail: 'https://images.unsplash.com/photo-1518098268026-4e89f1a2cd8e?auto=format&fit=crop&q=80&w=800', title: 'Спуск в долину' }
+      { type: 'image', url: '/images/pereval-katu-yaryk-dolina-chulyshman-altay12.webp', title: 'Кату-Ярык сверху', link: '/location/долина-чулышмана' },
+      { type: 'video', url: '#', thumbnail: '/images/pereval-katu-yaryk-dolina-chulyshman-altay1.webp', title: 'Спуск в долину', link: '/location/долина-чулышмана' }
     ],
     reviews: REVIEWS.filter(r => r.locationId === 'ulagan')
   }
@@ -110,7 +110,7 @@ export const TOURS = [
     intensity: 'Средняя',
     comfort: 'Стандарт',
     description: 'Покоряйте самые труднодоступные локации на подготовленных внедорожниках. Увидьте Алтай таким, каким его видят единицы.',
-    image: 'https://images.unsplash.com/photo-1619544977259-2f27d54b83e0?auto=format&fit=crop&q=80&w=1200',
+    image: '/images/chuyskiy-trakt-doroga-altay3.webp',
     tags: ['Джипы', 'Экспедиция', 'Чуйский тракт'],
   },
   {
@@ -123,7 +123,7 @@ export const TOURS = [
     intensity: 'Высокая',
     comfort: 'Базовый',
     description: 'Классический пеший маршрут к сердцу Алтая — подножию священной горы Белуха.',
-    image: 'https://images.unsplash.com/photo-1541336032412-2048a678540d?auto=format&fit=crop&q=80&w=1200',
+    image: '/images/chuyskiy-trakt-doroga-altay2.webp',
     tags: ['Треккинг', 'Горы', 'Белуха'],
   },
   {
@@ -136,7 +136,7 @@ export const TOURS = [
     intensity: 'Низкая',
     comfort: 'Премиум',
     description: 'Спокойный отдых на "младшем брате Байкала". Водопады, катерные прогулки и уединение.',
-    image: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&q=80&w=1200',
+    image: '/images/teleckoe-ozero-artybash-altay12.webp',
     tags: ['Озеро', 'Релакс', 'Семья'],
   },
 ];

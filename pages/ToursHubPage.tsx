@@ -38,14 +38,15 @@ const ToursHubPage: React.FC<ToursHubPageProps> = ({ setView }) => {
       setError(null);
       try {
         const allPages = await getAllPages();
-        
+
         const finalTours = TOURS_DATA.map(tourDef => {
           const pageContent = allPages.find(p => p.wp_id === tourDef.wp_id);
           if (pageContent) {
             return {
               ...pageContent,
-              title: tourDef.title, 
+              title: tourDef.title,
               slug: tourDef.slug,
+              image: tourDef.image,
             };
           }
           return null;
@@ -69,6 +70,7 @@ const ToursHubPage: React.FC<ToursHubPageProps> = ({ setView }) => {
       wp_id: t.wp_id,
       title: t.title,
       slug: t.slug,
+      image: (t as any).image,
       description: createExcerpt(t.contentHtml, 150),
     }));
   }, [tours]);
@@ -119,11 +121,10 @@ const ToursHubPage: React.FC<ToursHubPageProps> = ({ setView }) => {
           <button
             key={tab.key}
             onClick={() => setActiveTab(tab.key)}
-            className={`px-6 py-3 rounded-full text-sm font-semibold transition-all duration-300 ${
-              activeTab === tab.key 
-                ? 'bg-[#4A5D4E] text-white shadow-lg scale-105' 
-                : 'bg-white text-[#2C3531] hover:bg-gray-100 border border-gray-100'
-            }`}
+            className={`px-6 py-3 rounded-full text-sm font-semibold transition-all duration-300 ${activeTab === tab.key
+              ? 'bg-[#4A5D4E] text-white shadow-lg scale-105'
+              : 'bg-white text-[#2C3531] hover:bg-gray-100 border border-gray-100'
+              }`}
           >
             {tab.name}
           </button>
@@ -132,20 +133,37 @@ const ToursHubPage: React.FC<ToursHubPageProps> = ({ setView }) => {
 
       <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
         {filteredCards.map(tour => (
-          <div key={tour.wp_id} onClick={() => setView({ page: 'tourDetail', params: { tourId: encodeURIComponent(tour.slug) } })} className="block group h-full cursor-pointer">
-            <div className="bg-white/60 glass-card rounded-[2.5rem] p-8 border border-white/40 shadow-sm hover:shadow-xl hover:bg-white hover:-translate-y-1 transition-all duration-300 h-full flex flex-col">
-              <div className="flex-grow">
-                <h3 className="text-2xl font-expressive mb-4 text-[#2C3531] group-hover:text-[#A68B67] transition-colors leading-tight">
+          <div
+            key={tour.wp_id}
+            onClick={() => setView({ page: 'tourDetail', params: { tourId: encodeURIComponent(tour.slug) } })}
+            className="block group cursor-pointer relative overflow-hidden rounded-[2rem] aspect-[4/5] md:aspect-[4/3] shadow-md hover:shadow-2xl transition-all duration-500"
+          >
+            {/* Background Layer */}
+            <div className="absolute inset-0">
+              {tour.image ? (
+                <img
+                  src={tour.image}
+                  alt={tour.title}
+                  className={`w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 ${tour.image.includes('teleckoe-ozero-artybash-altay12.webp') ? 'rotate-90 scale-[1.5]' : ''}`}
+                />
+              ) : (
+                <div className="w-full h-full bg-gradient-to-br from-[#4A5D4E] to-[#2C3531]"></div>
+              )}
+              {/* Universal Gradient Overlay for better text contrast */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent"></div>
+            </div>
+
+            {/* Content Overlay */}
+            <div className="absolute inset-0 p-8 flex flex-col justify-end">
+              <div className="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                <h3 className="text-white font-expressive text-lg md:text-xl uppercase leading-tight tracking-tight drop-shadow-lg mb-4">
                   {tour.title}
                 </h3>
-                <div className="w-12 h-0.5 bg-[#A68B67]/20 mb-6 group-hover:w-20 transition-all duration-500"></div>
-                <p className="text-sm text-[#2C3531]/70 font-archival leading-relaxed">
-                  {tour.description}
-                </p>
               </div>
-              <div className="mt-8 flex items-center justify-between">
-                <span className="text-xs font-bold uppercase tracking-widest text-[#A68B67]">Подробнее</span>
-                <span className="w-8 h-8 rounded-full border border-[#A68B67]/20 flex items-center justify-center text-[#A68B67] group-hover:bg-[#A68B67] group-hover:text-white transition-all group-hover:translate-x-1 duration-300">
+
+              <div className="flex items-center justify-between opacity-0 group-hover:opacity-100 transition-all duration-500 delay-100 transform translate-y-2 group-hover:translate-y-0">
+                <span className="text-white/70 text-[10px] font-bold uppercase tracking-[0.2em]">Подробнее</span>
+                <span className="w-8 h-8 rounded-full border border-white/30 flex items-center justify-center text-white group-hover:bg-white group-hover:text-black transition-colors">
                   →
                 </span>
               </div>

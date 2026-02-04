@@ -40,7 +40,7 @@ const HomePage: React.FC<HomePageProps> = ({ setView }) => {
       </div>
 
       <div id="experiences">
-        <ExperienceExplorer />
+        <ExperienceExplorer setView={setView} />
       </div>
 
       <div id="pricing">
