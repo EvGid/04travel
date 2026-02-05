@@ -12,6 +12,8 @@ import ExcursionsHubPage from './pages/ExcursionsHubPage';
 import ExcursionDetailPage from './pages/ExcursionDetailPage';
 import NotFoundPage from './pages/NotFoundPage';
 import ChulyshmanTest from './pages/ChulyshmanTest';
+import JeepToursPage from './pages/JeepToursPage';
+import TransferPage from './pages/TransferPage';
 import MarsPage from './pages/MarsPage';
 import ContactPage from './pages/ContactPage';
 
@@ -64,6 +66,16 @@ const resolveViewFromPath = (path: string): ViewState => {
     // Explicit override for Chulyshman page
     if (canonicalSlug === 'долина-чулышмана' || canonicalSlug.includes('чулышман')) {
       return { page: 'chulyshmanPage', params };
+    }
+
+    // Explicit override for Jeep Tours
+    if (canonicalSlug === 'джип-туры-по-алтаю' || canonicalSlug === 'джип-туры-на-алтай') {
+      return { page: 'jeepToursPage', params };
+    }
+
+    // Explicit override for Transfer
+    if (canonicalSlug === 'transfer-gorny-altay' || canonicalSlug === 'transfer-altai' || canonicalSlug.includes('трансфер')) {
+      return { page: 'transferPage', params };
     }
 
     if (TOUR_SLUGS_SET.has(canonicalSlug)) {
@@ -259,6 +271,10 @@ const App: React.FC = () => {
         return view.params?.locationId ? <LocationDetailPage locationId={view.params.locationId} {...detailPageProps} /> : <NotFoundPage setView={navigate} />;
       case 'marsPage':
         return <MarsPage />;
+      case 'jeepToursPage':
+        return <JeepToursPage />;
+      case 'transferPage':
+        return <TransferPage />;
       case 'chulyshmanPage':
         return <ChulyshmanTest />;
       case 'blog':

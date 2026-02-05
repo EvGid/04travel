@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 
 const ChulyshmanTest: React.FC = () => {
-    // Полный список изображений (v=3 для сброса кэша после ротации)
+    // Полный список изображений (v=4 для сброса кэша)
     const images = [
         '/images/chulyshman/pereval-katu-yaryk-dolina-chulyshman-altay12.webp', // Landscape (Main)
-        '/images/chulyshman/pereval-katu-yaryk-dolina-chulyshman-altay1.webp?v=3', // Portrait (Rotated)
-        '/images/chulyshman/pereval-katu-yaryk-dolina-chulyshman-altay2.webp?v=3', // Portrait (Rotated)
-        '/images/chulyshman/pereval-katu-yaryk-dolina-chulyshman-altay3.webp',
-        '/images/chulyshman/pereval-katu-yaryk-dolina-chulyshman-altay4.webp',
+        '/images/chulyshman/pereval-katu-yaryk-dolina-chulyshman-altay1.webp?v=3', // Portrait
+        '/images/chulyshman/pereval-katu-yaryk-dolina-chulyshman-altay13.webp', // REPLACEMENT for duplicate altay2
+        '/images/chulyshman/pereval-katu-yaryk-dolina-chulyshman-altay3-rotated.webp', // Fixed Rotation
+        '/images/chulyshman/pereval-katu-yaryk-dolina-chulyshman-altay4-rotated.webp', // Fixed Rotation
         '/images/chulyshman/pereval-katu-yaryk-dolina-chulyshman-altay5.webp',
         '/images/chulyshman/pereval-katu-yaryk-dolina-chulyshman-altay6.webp',
         '/images/chulyshman/pereval-katu-yaryk-dolina-chulyshman-altay7.webp',
@@ -15,7 +15,7 @@ const ChulyshmanTest: React.FC = () => {
         '/images/chulyshman/pereval-katu-yaryk-dolina-chulyshman-altay9.webp',
         '/images/chulyshman/pereval-katu-yaryk-dolina-chulyshman-altay10.webp',
         '/images/chulyshman/pereval-katu-yaryk-dolina-chulyshman-altay11.webp',
-        '/images/chulyshman/pereval-katu-yaryk-dolina-chulyshman-altay13.webp',
+        // altay13 moved up
         '/images/chulyshman/pereval-katu-yaryk-dolina-chulyshman-altay14.webp',
         '/images/chulyshman/pereval-katu-yaryk-dolina-chulyshman-altay15.webp',
         '/images/chulyshman/pereval-katu-yaryk-dolina-chulyshman-altay16.webp',
